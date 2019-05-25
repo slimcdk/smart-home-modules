@@ -1,3 +1,9 @@
 [submodule "libs/kicad/d1_mini_kicad"]
 	path = libs/kicad/d1_mini_kicad
 	url = https://github.com/jerome-labidurie/d1_mini_kicad.git
+[submodule "libs/kicad/KiCAD_Libraries"]
+	path = libs/kicad/KiCAD_Libraries
+	url = git@github.com:CascoLogix/KiCAD_Libraries.git
+[submodule "libs/kicad/wemos-d1-mini-kicad"]
+	path = libs/kicad/wemos-d1-mini-kicad
+	url = git@github.com:rubienr/wemos-d1-mini-kicad.git
