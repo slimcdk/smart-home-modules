@@ -59,28 +59,6 @@ F 3 "http://www.us.liteon.com/downloads/LTV-817-827-847.PDF" H 3250 1150 50  000
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP C2
-U 1 1 5CD36E4A
-P 3400 2100
-F 0 "C2" H 3250 2400 50  0000 L CNN
-F 1 "470µf" H 3250 2300 50  0000 L CNN
-F 2 "" H 3438 1950 50  0001 C CNN
-F 3 "~" H 3400 2100 50  0001 C CNN
-	1    3400 2100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Regulator_Linear:L7805 U2
-U 1 1 5CD36F79
-P 4200 1950
-F 0 "U2" H 4200 2192 50  0000 C CNN
-F 1 "L7805" H 4200 2101 50  0000 C CNN
-F 2 "" H 4225 1800 50  0001 L CIN
-F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf" H 4200 1900 50  0001 C CNN
-	1    4200 1950
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R R2
 U 1 1 5CD372F6
 P 4450 1250
@@ -147,28 +125,6 @@ F 3 "~" H 1800 3400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C3
-U 1 1 5CD37F4F
-P 3700 2100
-F 0 "C3" H 3600 2400 50  0000 L CNN
-F 1 "0.1µf" H 3600 2300 50  0000 L CNN
-F 2 "" H 3738 1950 50  0001 C CNN
-F 3 "~" H 3700 2100 50  0001 C CNN
-	1    3700 2100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C4
-U 1 1 5CD37FCF
-P 4600 2100
-F 0 "C4" H 4715 2146 50  0000 L CNN
-F 1 "0.1µf" H 4715 2055 50  0000 L CNN
-F 2 "" H 4638 1950 50  0001 C CNN
-F 3 "~" H 4600 2100 50  0001 C CNN
-	1    4600 2100
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:VAC #PWR0104
 U 1 1 5CD3818E
 P 1550 3750
@@ -224,7 +180,7 @@ U 1 1 5CD3C77D
 P 5600 2050
 F 0 "U4" H 5600 2687 60  0000 C CNN
 F 1 "WeMos_mini" H 5600 2581 60  0000 C CNN
-F 2 "" H 6150 1350 60  0000 C CNN
+F 2 "" H 6150 1350 60  0001 C CNN
 F 3 "http://www.wemos.cc/Products/d1_mini.html" H 5600 2581 60  0001 C CNN
 	1    5600 2050
 	1    0    0    -1  
@@ -305,10 +261,6 @@ Wire Wire Line
 	2550 2500 2550 2600
 Wire Wire Line
 	2550 2600 2950 2600
-Wire Wire Line
-	4200 2300 4200 2250
-Wire Wire Line
-	4500 1950 4600 1950
 $Comp
 L power:GND #PWR0107
 U 1 1 5CD4B035
@@ -331,44 +283,20 @@ Wire Wire Line
 $Comp
 L power:GND #PWR0108
 U 1 1 5CD4B718
-P 4600 2350
-F 0 "#PWR0108" H 4600 2100 50  0001 C CNN
-F 1 "GND" H 4605 2177 50  0000 C CNN
-F 2 "" H 4600 2350 50  0001 C CNN
-F 3 "" H 4600 2350 50  0001 C CNN
-	1    4600 2350
+P 4000 2350
+F 0 "#PWR0108" H 4000 2100 50  0001 C CNN
+F 1 "GND" H 4005 2177 50  0000 C CNN
+F 2 "" H 4000 2350 50  0001 C CNN
+F 3 "" H 4000 2350 50  0001 C CNN
+	1    4000 2350
 	1    0    0    -1  
 $EndComp
-Connection ~ 4200 2300
-Wire Wire Line
-	4200 2300 4600 2300
-Wire Wire Line
-	4600 2300 4600 2250
-Wire Wire Line
-	3400 1950 3700 1950
 Wire Wire Line
 	3250 2300 3400 2300
 Wire Wire Line
-	3700 2300 3700 2250
-Connection ~ 3700 2300
-Wire Wire Line
-	3700 2300 4200 2300
-Wire Wire Line
 	3400 2300 3400 2250
-Connection ~ 3400 2300
-Wire Wire Line
-	3400 2300 3700 2300
-Wire Wire Line
-	3700 1950 3900 1950
-Connection ~ 3700 1950
-Wire Wire Line
-	4600 2300 4600 2350
-Connection ~ 4600 2300
-Wire Wire Line
-	3400 1950 2650 1950
 Wire Wire Line
 	2650 1950 2650 2300
-Connection ~ 3400 1950
 Wire Wire Line
 	1800 2750 1800 2850
 Wire Wire Line
@@ -473,10 +401,6 @@ Connection ~ 1550 2500
 Wire Wire Line
 	1550 2500 1550 2750
 Wire Wire Line
-	4600 1950 4600 1700
-Connection ~ 4600 1950
-Connection ~ 4600 1700
-Wire Wire Line
 	1650 2100 1650 3450
 Wire Wire Line
 	1650 3450 1600 3450
@@ -505,4 +429,44 @@ Wire Wire Line
 Connection ~ 1650 3550
 Wire Wire Line
 	1650 3550 1800 3550
+Wire Wire Line
+	3400 1950 2650 1950
+$Comp
+L Device:CP C2
+U 1 1 5CD36E4A
+P 3400 2100
+F 0 "C2" H 3250 2400 50  0000 L CNN
+F 1 "470µf" H 3250 2300 50  0000 L CNN
+F 2 "" H 3438 1950 50  0001 C CNN
+F 3 "~" H 3400 2100 50  0001 C CNN
+	1    3400 2100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 2300 4000 2350
+$Comp
+L made-in-china:DSN-MINI-360 U5
+U 1 1 5CD70C62
+P 3850 1850
+F 0 "U5" H 4000 1900 50  0000 C CNN
+F 1 "DSN-MINI-360" H 4250 2000 50  0000 C CNN
+F 2 "" H 3850 1550 50  0001 C CNN
+F 3 "" H 3850 1550 50  0001 C CNN
+	1    3850 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 1950 3750 1950
+Connection ~ 3400 1950
+Wire Wire Line
+	3400 2300 4000 2300
+Wire Wire Line
+	4000 2300 4000 2150
+Connection ~ 3400 2300
+Wire Wire Line
+	4250 1950 4600 1950
+Wire Wire Line
+	4600 1950 4600 1700
+Connection ~ 4600 1700
+Connection ~ 4000 2300
 $EndSCHEMATC

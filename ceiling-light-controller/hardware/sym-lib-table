@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name wemos_mini)(type Legacy)(uri /home/christian/Projects/libre-home-automation/libs/kicad/d1_mini_kicad/library/wemos_mini.lib)(options "")(descr ""))
+  (lib (name made-in-china)(type Legacy)(uri /home/christian/Projects/libre-home-auto-components/libs/kicad/slimc/made-in-china.lib)(options "")(descr ""))
 )
