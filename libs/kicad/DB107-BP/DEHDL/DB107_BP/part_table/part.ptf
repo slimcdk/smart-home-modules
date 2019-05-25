@@ -1,0 +1,11 @@
+FILE_TYPE = MULTI_PHYS_TABLE;
+
+PART 'DB107_BP'
+CLASS = DISCRETE
+{========================================================================================}
+:"MANUFACTURER_NAME", "MANUFACTURER_PART_NUMBER"= "PART_NUMBER", "JEDEC_TYPE", "PACK_TYPE", "MOUSER_PART_NUMBER", "MOUSER_PRICE/STOCK", "RS_PART_NUMBER", "RS_PRICE/STOCK", "DESCRIPTION", "DATASHEET", "HEIGHT";
+{========================================================================================}
+ "Micro Commercial Components (MCC)", "DB107-BP" (!) = "", "DIP825W56P510L828H330Q4N", "Dual-In-Line Packages", "833-DB107-BP", "https://www.mouser.com/Search/Refine.aspx?Keyword=833-DB107-BP", "", "", "Bridge Rectifiers 1.0A 1000V", "http://www.mccsemi.com/up_pdf/DB101-DB107(DB-1).pdf", "3.3 mm"
+END_PART
+
+END.

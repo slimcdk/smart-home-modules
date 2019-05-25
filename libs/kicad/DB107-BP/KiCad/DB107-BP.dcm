@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP DB107-BP
+D Bridge Rectifiers 1.0A 1000V
+K
+F http://www.mccsemi.com/up_pdf/DB101-DB107(DB-1).pdf
+$ENDCMP
+#
+#End Doc Library
