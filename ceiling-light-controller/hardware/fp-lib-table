@@ -30,4 +30,5 @@
   (lib (name ohw-logo)(type Legacy)(uri /home/christian/Projects/libre-home-automation/libs/kicad/KiCAD_Libraries/PCB/ohw-logo.mod)(options "")(descr ""))
   (lib (name Switch)(type Legacy)(uri /home/christian/Projects/libre-home-automation/libs/kicad/KiCAD_Libraries/PCB/Switch.mod)(options "")(descr ""))
   (lib (name DB107-BP)(type Legacy)(uri /home/christian/Projects/libre-home-automation/libs/kicad/DB107-BP/KiCad/DB107-BP.mod)(options "")(descr ""))
+  (lib (name slimc)(type KiCad)(uri /home/christian/Projects/libre-home-automation/libs/kicad/slimc)(options "")(descr ""))
 )
