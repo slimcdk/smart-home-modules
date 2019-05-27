@@ -259,17 +259,6 @@ Wire Wire Line
 Wire Wire Line
 	2050 1700 1650 1700
 $Comp
-L Power_Supplies:HLK-PM03 U2
-U 1 1 5CE9C5F6
-P 2350 1750
-F 0 "U2" H 2350 1992 40  0000 C CNN
-F 1 "HLK-PM03" H 2350 1916 40  0000 C CNN
-F 2 "Power_Supply:HLK-PM01" H 1450 3100 60  0001 C CNN
-F 3 "" H 1450 3100 60  0000 C CNN
-	1    2350 1750
-	1    0    0    -1  
-$EndComp
-$Comp
 L wemos_mini:WeMos_mini U4
 U 1 1 5CE9DED8
 P 5600 2050
@@ -423,4 +412,15 @@ Connection ~ 1650 1700
 Connection ~ 1650 1050
 Wire Wire Line
 	1650 1050 1550 1050
+$Comp
+L Power_Supplies:HLK-PM05 U2
+U 1 1 5CEC553E
+P 2350 1750
+F 0 "U2" H 2350 1992 40  0000 C CNN
+F 1 "HLK-PM05" H 2350 1916 40  0000 C CNN
+F 2 "Power_Supply:HLK-PM05" H 1450 3100 60  0001 C CNN
+F 3 "" H 1450 3100 60  0000 C CNN
+	1    2350 1750
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

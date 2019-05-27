@@ -1,6 +1,6 @@
-[submodule "ceiling-light-controller/hardware/libs/KiCAD_Libraries"]
-	path = ceiling-light-controller/hardware/libs/KiCAD_Libraries
-	url = git@github.com:CascoLogix/KiCAD_Libraries.git
-[submodule "ceiling-light-controller/hardware/libs/wemos-d1-mini-kicad"]
-	path = ceiling-light-controller/hardware/libs/wemos-d1-mini-kicad
+[submodule "ceiling-light-controller/circuits/libs/wemos-d1-mini-kicad"]
+	path = ceiling-light-controller/circuits/libs/wemos-d1-mini-kicad
 	url = git@github.com:rubienr/wemos-d1-mini-kicad.git
+[submodule "ceiling-light-controller/circuits/libs/KiCAD_Libraries"]
+	path = ceiling-light-controller/circuits/libs/KiCAD_Libraries
+	url = git@github.com:CascoLogix/KiCAD_Libraries.git
