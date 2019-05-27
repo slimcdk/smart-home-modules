@@ -1,6 +1,6 @@
 (sym_lib_table
-  (lib (name Power_Supplies)(type Legacy)(uri /home/christian/Projects/libre-home-automation/libs/kicad/KiCAD_Libraries/Schematic/Power_Supplies.lib)(options "")(descr ""))
-  (lib (name wemos_mini)(type Legacy)(uri /home/christian/Projects/libre-home-automation/libs/kicad/wemos-d1-mini-kicad/libraries/wemos_mini.lib)(options "")(descr ""))
-  (lib (name DB107-BP)(type Legacy)(uri /home/christian/Projects/libre-home-automation/libs/kicad/DB107-BP/KiCad/DB107-BP.lib)(options "")(descr ""))
-  (lib (name made-in-china)(type Legacy)(uri /home/christian/Projects/libre-home-automation/libs/kicad/slimc/made-in-china.lib)(options "")(descr ""))
+  (lib (name Power_Supplies)(type Legacy)(uri ${KIPRJMOD}/libs/kicad/KiCAD_Libraries/Schematic/Power_Supplies.lib)(options "")(descr ""))
+  (lib (name wemos_mini)(type Legacy)(uri ${KIPRJMOD}/libs/kicad/wemos-d1-mini-kicad/libraries/wemos_mini.lib)(options "")(descr ""))
+  (lib (name DB107-BP)(type Legacy)(uri ${KIPRJMOD}/libs/kicad/DB107-BP/KiCad/DB107-BP.lib)(options "")(descr ""))
+  (lib (name made-in-china)(type Legacy)(uri ${KIPRJMOD}/libs/kicad/slimc/made-in-china.lib)(options "")(descr ""))
 )
