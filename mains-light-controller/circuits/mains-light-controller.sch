@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:ceiling-light-controller-cache
+LIBS:mains-light-controller-cache
 EELAYER 26 0
 EELAYER END
 $Descr User 7087 5906
