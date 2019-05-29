@@ -1,7 +1,7 @@
-# Ceiling Light Controller
+# Mains Light Controller
 
-This component fits the general ceiling light socket in Denmark.
-
+This component can control any loads of mains voltage up to 10A.
+Requires constant power and sensing line (100-230VAC).
 
 
 <hr>

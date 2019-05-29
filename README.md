@@ -1,18 +1,32 @@
 # Hardware components for home automation
 
 
-### Setup
+
+
+## Saved for furter reading
+https://github.com/xesscorp/kicad-3rd-party-tools
+
+
+
+## Setup
 To fetch submodules, run the command:
 ```
 $ git submodule update --init
 ```
 
 
-### Edit circuits
-To edit circuits, KiCad v5^ are required.
-Libraries are configured in each component, due to poor library management in KiCad. - Common library structure are preferred.
 
 
+## Contribute
+You are very welcome to do pull requests. Before doing so, please read the repository guidelines.
 
-### Saved for furter reading
-https://github.com/xesscorp/kicad-3rd-party-tools
+
+### Repository structure
+
+KiCad can not handle libaries outside its project folders. Therefore common libraries must be places in ```include/libs/kicad``` and any project then symlinks this directory.
+
+E.g. this will create a symbolic link ```libs```inside the kicad project.
+```
+$ cd mains-light-controller/circuits
+$ ln -s ./../../include/libs/kicad ./libs
+```
