@@ -4,3 +4,6 @@
 [submodule "ceiling-light-controller/circuits/libs/wemos-d1-mini-kicad"]
 	path = include/libs/kicad/wemos-d1-mini-kicad
 	url = git@github.com:rubienr/wemos-d1-mini-kicad.git
+[submodule "include/libs/kicad/Buttons_Switches_THT.pretty"]
+	path = include/libs/kicad/Buttons_Switches_THT.pretty
+	url = https://github.com/KiCad/Buttons_Switches_THT.pretty.git
