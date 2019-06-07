@@ -1,11 +1,47 @@
-# Mains Light Controller
+<h1>Mains Light Controller</h1>
 
 This component can control any loads of mains voltage up to 10A.
 Requires constant power and sensing line (100-230VAC).
 
 
 <hr>
-<h3>Inputs</h3>
+<h2>Circuit Design</h2>
+<img src="exports/mains-light-controller.svg" style="background-color: #FFF;">
+
+
+<div id="pcb-stack">
+  <img src="exports/mains-light-controller-B.Cu.svg" style="background-color: #FFF;">
+  <img src="exports/mains-light-controller-Edge.Cuts.svg" style="background-color: #FFF;">
+  <img src="exports/mains-light-controller-F.Cu.svg" style="background-color: #FFF;">
+  <img src="exports/mains-light-controller-F-Mask.svg" style="background-color: #FFF;">
+  <img src="exports/mains-light-controller-F.SilkS.svg" style="background-color: #FFF;">
+</div>
+
+
+<style>
+
+  .pcb-stack {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .image1 {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .image2 {
+    position: absolute;
+    top: 30px;
+    left: 70px;
+  }
+
+</style>
+
+
+
+<hr>
+<h3>Power inputs</h3>
 <ul>
     <li>M1: Power from switches</li>
     <li>M2: Constant power supply</li>
@@ -38,3 +74,4 @@ Requires constant power and sensing line (100-230VAC).
   <tr> <td>16</td> <td>1</td> <td>1/2W 330 Ohms resistor</td> <td></td> <td></td> </tr>
   <tr> <td>17</td> <td>1</td> <td>1/2W 100nf Ceramic capacitor</td> <td></td> <td></td> </tr>
 </table>
+
