@@ -25,8 +25,10 @@ Requires constant power and sensing line (100-230VAC).
   <div style="float:left; height: 100%; width:auto;">
     <ul>
       <li><a href="exports/mains-light-controller-Edge.Cuts.svg">Edge Cuts</a></li>
-      <li><a href="exports/mains-light-controller-F.SilkS.svg">Silkscreen</a></li> 
-      <li><a href="exports/mains-light-controller-F.Mask.svg">Soldermask</a></li>
+      <li><a href="exports/mains-light-controller-F.SilkS.svg">Silkscreen Top</a></li>
+      <li><a href="exports/mains-light-controller-B.SilkS.svg">Silkscreen Bottom</a></li>  
+      <li><a href="exports/mains-light-controller-F.Mask.svg">Soldermask Top</a></li>
+      <li><a href="exports/mains-light-controller-B.Mask.svg">Soldermask Bottom</a></li>
       <li><a href="exports/mains-light-controller-F.Cu.svg">Copper Top</a></li>
       <li><a href="exports/mains-light-controller-B.Cu.svg">Copper Bottom</a></li>
     </ul>
@@ -36,7 +38,9 @@ Requires constant power and sensing line (100-230VAC).
   <div style="margin-left:auto; margin-right:auto; height:100%; width:100%;">
     <img src="exports/mains-light-controller-Edge.Cuts.svg" style="position: absolute;">
     <img src="exports/mains-light-controller-F.SilkS.svg" style="position: absolute;">
+    <img src="exports/mains-light-controller-B.SilkS.svg" style="position: absolute;">
     <img src="exports/mains-light-controller-F.Mask.svg" style="position: absolute;">
+    <img src="exports/mains-light-controller-B.Mask.svg" style="position: absolute;">
     <img src="exports/mains-light-controller-B.Cu.svg" style="position: absolute;">
     <img src="exports/mains-light-controller-F.Cu.svg" style="position: absolute;">
   </div>

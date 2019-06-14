@@ -7,3 +7,6 @@
 [submodule "include/libs/kicad/Buttons_Switches_THT.pretty"]
 	path = include/libs/kicad/Buttons_Switches_THT.pretty
 	url = https://github.com/KiCad/Buttons_Switches_THT.pretty.git
+[submodule "include/libs/kicad/Fuse_Holders_and_Fuses.pretty"]
+	path = include/libs/kicad/Fuse_Holders_and_Fuses.pretty
+	url = https://github.com/KiCad/Fuse_Holders_and_Fuses.pretty.git

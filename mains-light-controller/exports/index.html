@@ -18,8 +18,8 @@
         <tr>
             <td>Bottom</td>
             <td><input type="checkbox" name="copper:bottom" onclick="updateStack(this);" checked></td>
-            <td></td>
-            <td></td>
+            <td><input type="checkbox" name="soldermask:bottom" onclick="updateStack(this);" checked></td>
+            <td><input type="checkbox" name="silkscreen:bottom" onclick="updateStack(this);" checked></td>
             <td></td>
         </tr>
         <tr>
@@ -55,6 +55,14 @@
             "display": true
         },
         {
+            "tag": "soldermask:bottom",
+            "file_path": "mains-light-controller-B.Mask.svg",
+            "color": "green",
+            "group": "Soldermask",
+            "layer": "Top",
+            "display": true
+        },
+        {
             "tag": "edge-cuts",
             "file_path": "mains-light-controller-Edge.Cuts.svg",
             "color": "yellow",
@@ -81,6 +89,14 @@
         {
             "tag": "silkscreen:top",
             "file_path": "mains-light-controller-F.SilkS.svg",
+            "color": "white",
+            "group": "Silkscreen",
+            "layer": "Top",
+            "display": true
+        },
+        {
+            "tag": "silkscreen:bottom",
+            "file_path": "mains-light-controller-B.SilkS.svg",
             "color": "white",
             "group": "Silkscreen",
             "layer": "Top",
