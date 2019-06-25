@@ -1,228 +1,166 @@
-// Public libraries
-#include <ESP8266WiFi.h>
-#include <ESP8266mDNS.h>
-#include <WiFiUdp.h>
-#include <ArduinoOTA.h>
-#include <PubSubClient.h>
-#include <Adafruit_NeoPixel.h>
-
-// Custom libaries
-#include <StatusLED.h>
+/*
+  main.ino
+  Created by Christian S. Skjerning, June 18, 2019.
+  Released into the public domain.
+*/
 
 
-// Nwtwork configuration
-#define WIFI_SSID               "SuperNetty"
-#define WIFI_PSK                "DankMemes420"
-#define MQTT_ADDRESS            "192.168.123.17"
-#define MQTT_SERVER_PORT        1883
-#define MQTT_USER               "esp-ceiling-light"
-#define MQTT_PSK                "DankMemes420"
-
-// Structure                    "{bulding}/{room}/{location}/{type}"
-#define MQTT_TOPIC              "home/living/ceiling/light"
-
-
-
-// Hardware configuration
-#define SWITCH_SENSE_PIN        2
-#define MAINS_SWITCHING_PIN     4
-#define STATUS_LED_PIN          0
-#define LIGHT_LEVEL_SENSE_PIN   A0
-
-
-// Data structure for publishing information
-struct publish_data {
-  //int temperature;
-  int light_level;
-  int switch_state;
-  int power_level;
-};
-
-
-WiFiClient socket;
-PubSubClient network(socket);
-StatusLED statusLED(STATUS_LED_PIN);
-
-
-// Switch sensing
-#ifdef SWITCH_SENSE_PIN
-  uint8_t sense_avg_index = 0;
-  const uint8_t SENSE_AVG_MAX_SAMPLES = 50;
-  bool sense_avg[SENSE_AVG_MAX_SAMPLES];
-#endif
-
-
-// Load power switching
-#ifdef MAINS_SWITCHING_PIN
-  bool power = 0;
-  int power_level = power * 255;
-#endif
-
-
-// For flashing status LED
-unsigned long previousMillis = 0;
-const long FLASH_INTERVAL = 80;
-bool flash = false;
-
+#include "conf.h"
 
 
 void setup() {
-  Serial.begin(115200);
-  statusLED.init();
+  
+  LED.init();
 
   /* IO CONFIGURATION */
   pinMode(SWITCH_SENSE_PIN, INPUT);
   pinMode(LIGHT_LEVEL_SENSE_PIN, INPUT);
-  pinMode(MAINS_SWITCHING_PIN, OUTPUT);
-  
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(WIFI_SSID, WIFI_PSK);
+  pinMode(OUTPUT_LOAD_PIN, OUTPUT);
 
-  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    //// Serial.println("Connection Failed! Rebooting...");
-    delay(5000);
-    ESP.restart();
+
+
+  /* ARDUINO 'OVER THE AIR' CONFIGURATION */
+  ArduinoOTA.onStart( []() {
+    LED.code(LED.NEUTRAL);
+  });
+
+  ArduinoOTA.onProgress( [](unsigned int progress, unsigned int total) {
+    LED.code(LED.BUSY);
+  });
+
+  ArduinoOTA.onEnd( []() {
+    LED.code(LED.GOOD);
+  });
+
+  ArduinoOTA.setHostname(DEVICE_ID);
+  ArduinoOTA.begin();
+
+
+
+
+  /* WIFI CONNECTION CONFIGURATION */
+  WiFiManager wifiManager;
+  wifiManager.setAPCallback(configModeCallback);
+  if(!wifiManager.autoConnect()) {
+    LED.code(LED.WARNING);
+    delay(1000);
+    ESP.reset();
   }
 
 
+
+
+
+  /* MQTT CONFIGURATION */
   network.setServer(MQTT_ADDRESS, MQTT_SERVER_PORT);
   network.setCallback(callback);
  
   while (!network.connected()) {
-    // Serial.println("Connecting to MQTT...");
- 
-    if (network.connect("ESP8266Client", MQTT_USER, MQTT_PSK )) {
-      // Serial.println("connected");
+    if (network.connect(DEVICE_ID, MQTT_USER, MQTT_PSK )) {
+      LED.code(LED.WARNING);
     } else {
-      delay(2000);
-      ESP.restart();
+      LED.code(LED.WARNING);
+      delay(1000);
+      ESP.reset();
     }
   }
- 
-  network.subscribe(MQTT_TOPIC);
+
+  // create checkin report for available topics
+  const uint16_t capacity = JSON_OBJECT_SIZE(6+3+2+2+2+2+2) + JSON_ARRAY_SIZE(6);
+  DynamicJsonDocument report(capacity);
+  
+  report["device"] = DEVICE_TYPE;
+  report["id"] = DEVICE_ID;
+  report["capacity"] = capacity;
+  report["status"] = "on";
+  report["version"] = VERSION_N;
+
+  JsonArray topics =        report.createNestedArray("topics");
+  JsonObject load =         topics.createNestedObject();
+  JsonObject sw =           topics.createNestedObject();
+  JsonObject ll =           topics.createNestedObject();
+  JsonObject temperature =  topics.createNestedObject();
+  JsonObject humidity =     topics.createNestedObject();
+  JsonObject button =       topics.createNestedObject();
+
+  // output / load
+  load["type"] = "load";
+  load["set"] = MQTT_OUTPUT_SET;
+  load["get"] = MQTT_OUTPUT_GET;
+  
+  // mains switch
+  sw["type"] = "switch";
+  sw["get"] = MQTT_SWITCH_GET;
+
+  // light level
+  ll["type"] = "light_level";
+  ll["get"] = MQTT_LIGHT_LEVEL_GET;
+
+  // temperature
+  temperature["type"] = "temperature";
+  temperature["get"] = MQTT_TEMPERATURE_GET;
+
+  // humidity
+  humidity["type"] = "humidity";
+  humidity["get"] = MQTT_HUMIDITY_GET;
+
+  // button
+  button["type"] = "button";
+  button["get"] = MQTT_BUTTON_GET;
+
+  // transmit topic
+  char buffer[MQTT_MAX_PACKET_SIZE];
+  size_t n = serializeJson(report, buffer);
+  network.publish(MQTT_CHECKIN_REPORT, buffer, n);
+
+  // listen to topics
+  network.subscribe(MQTT_OUTPUT_SET);
+  network.subscribe(MQTT_ROOT);
+}
 
 
-  /* Arduino OAT 'Over The Air' handlers */
-  //ArduinoOTA.setHostname("ESP:ceiling-light");
-
-  ArduinoOTA.onStart([]() {
-    statusLED.code(4);
-    String type;
-    if (ArduinoOTA.getCommand() == U_FLASH) {
-      type = "sketch";
-    } else { // U_FS
-      type = "filesystem";
-    }
-
-    // NOTE: if updating FS this would be the place to unmount FS using FS.end()
-    Serial.println("Start updating " + type);
-  });
-
-
-  ArduinoOTA.onEnd([]() {
-    // Serial.println("\nEnd");
-  });
-
-  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
-    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
-    statusLED.code(3);
-  });
-
-  ArduinoOTA.onError([](ota_error_t error) {
-    statusLED.code(0);
-
-    // Serial.printf("Error[%u]: ", error);
-    if (error == OTA_AUTH_ERROR) {
-      // Serial.println("Auth Failed");
-    } else if (error == OTA_BEGIN_ERROR) {
-      // Serial.println("Begin Failed");
-    } else if (error == OTA_CONNECT_ERROR) {
-      // Serial.println("Connect Failed");
-    } else if (error == OTA_RECEIVE_ERROR) {
-      // Serial.println("Receive Failed");
-    } else if (error == OTA_END_ERROR) {
-      // Serial.println("End Failed");
-    }
-  });
-
-  ArduinoOTA.begin();
-  // Serial.println("Ready");
-  // Serial.print("IP address: ");
-  // Serial.println(WiFi.localIP());
-  statusLED.code(2);
+/* WIFI MANAGER CALLBACK */
+void configModeCallback (WiFiManager *myWiFiManager) {
+  WiFi.softAPIP();
 }
 
 
 
+/* MQTT CALLBACK */
 void callback(char* topic, byte* payload, unsigned int length) {
- 
-  // Serial.print("Message arrived in topic: ");
-  // Serial.println(topic);
- 
-  // Serial.print("Message:");
-  for (int i = 0; i < length; i++) {
-    // Serial.print((char)payload[i]);
-  }
- 
-  // Serial.println();
-  // Serial.println("-----------------------");
- 
+  StaticJsonDocument<256> doc;
+  deserializeJson(doc, payload, length);
 }
+
 
 
 void loop() {
   ArduinoOTA.handle();
   network.loop();
-  statusLED.code(2);
+  LED.code(LED.GOOD);
 
+  bool sw = senseSwitch();
+  uint8_t power_level = constrain(power_level += sw ? 1 : -1, 0, 255);
 
-  power = senseSwitch();
-  int8_t scale = power ? 1 : -1;
-  power_level = constrain(power_level += scale, 0, 255);
-  analogWrite(MAINS_SWITCHING_PIN, power_level);
+  if (ANALOGUE_LAMP) {
+    analogWrite(OUTPUT_LOAD_PIN, power_level);
+  } else {
+    digitalWrite(OUTPUT_LOAD_PIN, sw);
+  }
 
-  publishData();
 }
-
 
 
 bool senseSwitch() {
 
-  // Sense and store value in array with 'running index'
+  // running average
   sense_avg[sense_avg_index] = !digitalRead(SWITCH_SENSE_PIN);
-
-  // Calculate average
-  uint8_t _sense_sum = 0;
-  for (int i = 0; i < SENSE_AVG_MAX_SAMPLES; i++) 
-  {
-    _sense_sum += sense_avg[i];
-  }
-
-  // Increment and wrap 'running index'
   sense_avg_index = (sense_avg_index + 1) % SENSE_AVG_MAX_SAMPLES;
-
-  // Determine if power is present
+  
+  // sum current measurements
+  uint8_t _sense_sum = 0;
+  for (int i = 0; i < SENSE_AVG_MAX_SAMPLES; i++) _sense_sum += sense_avg[i];
+  
+  // determine if power switch is on
   return _sense_sum > 0;
-}
-
-
-uint16_t previousPublish = 0;
-
-void publishData() {
-
-
-  uint64_t currentMillis = millis();
-
-  if (currentMillis - previousPublish >= 5000) {
-    previousPublish = currentMillis;
-
-
-    publish_data data = {};
-    data.switch_state = power;
-    data.power_level = power_level;
-    data.light_level = analogRead(LIGHT_LEVEL_SENSE_PIN);
-
-    char* my_s_bytes = reinterpret_cast<char*>(&data);
-    network.publish(MQTT_TOPIC, String(analogRead(LIGHT_LEVEL_SENSE_PIN)).c_str(), true);
-  }
 }

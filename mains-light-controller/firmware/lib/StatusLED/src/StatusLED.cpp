@@ -1,10 +1,12 @@
 /*
-  StatusLED.h - Library for controlling status LED.
+  StatusLED.cpp - Library for controlling using WS2812 RGB LED.
   Created by Christian S. Skjerning, June 18, 2019.
   Released into the public domain.
 */
 
+
 #include <StatusLED.h>
+
 
 // Constructor
 StatusLED::StatusLED(const uint8_t STATUS_LED_PIN) : WS2812(1, STATUS_LED_PIN, NEO_GRB + NEO_KHZ800) {}
@@ -22,37 +24,32 @@ void StatusLED::code(uint8_t code) {
   uint32_t color;
 
   switch(code) {
-    // ERROR
-    case 0:
+    case ERROR:
       color = WS2812.Color(255, 0, 0);
       blink(100, 20);
       break;
     
-    // WARNING
-    case 1:
+    case WARNING:
       color = WS2812.Color(255, 255, 0);
       blink(1000, 20);
       break;
     
-    // GOOD
-    case 2:
+    case GOOD:
       color = WS2812.Color(0, 255, 0);
       blink(10000, 20);
       break;
     
-    // BUSY
-    case 3:
+    case BUSY:
       color = WS2812.Color(0, 255, 255);
       blink(50, 20);
       break;
     
-    // NEUTAL
-    case 4:
+    case NEUTRAL:
       color = WS2812.Color(255, 255, 255);
       blink(0, 20);
       break;
 
-    // NONE
+
     default: 
       color = WS2812.Color(0, 0, 0);
       blink(0, 20);

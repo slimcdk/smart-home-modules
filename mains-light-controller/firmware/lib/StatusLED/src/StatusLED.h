@@ -1,5 +1,5 @@
 /*
-StatusLED.h - Library for controlling status LED.
+StatusLED.h - Library for controlling using WS2812 RGB LED.
 Created by Christian S. Skjerning, June 18, 2019.
 Released into the public domain.
 */
@@ -11,13 +11,19 @@ Released into the public domain.
 	#include <Adafruit_NeoPixel.h>
 
 	class StatusLED 
-	{ 
+	{
 
 		public:
 			StatusLED(const uint8_t STATUS_LED_PIN);
 			void code(uint8_t code);
 			void init();
 
+			// status codes
+			static const uint8_t ERROR = 0;
+			static const uint8_t WARNING = 1;
+			static const uint8_t GOOD = 2;
+			static const uint8_t BUSY = 3;
+			static const uint8_t NEUTRAL = 4;
 
 		private:
 			Adafruit_NeoPixel WS2812;
