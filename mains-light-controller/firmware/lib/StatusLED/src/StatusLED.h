@@ -19,6 +19,7 @@ Released into the public domain.
 			void init();
 
 			// status codes
+			// static enum CODES {ERROR, WARNING, GOOD, BUSY, NEUTRAL };
 			static const uint8_t ERROR = 0;
 			static const uint8_t WARNING = 1;
 			static const uint8_t GOOD = 2;
