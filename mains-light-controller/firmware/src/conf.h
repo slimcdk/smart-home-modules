@@ -54,6 +54,7 @@
   uint8_t sense_avg_index = 0;
   const uint8_t SENSE_AVG_MAX_SAMPLES = 50;
   bool sense_avg[SENSE_AVG_MAX_SAMPLES];
+  bool lastSwitchState = false;
   #define MQTT_SWITCH_GET       MQTT_ROOT "/get/switch"
 #endif
 
@@ -61,8 +62,10 @@
 // load switching
 #ifdef OUTPUT_LOAD_PIN
   #define ANALOGUE_LAMP         false
-  #define MQTT_OUTPUT_SET       MQTT_ROOT "/set/load"
-  #define MQTT_OUTPUT_GET       MQTT_ROOT "/get/load"
+  #define MQTT_LOAD_SET       MQTT_ROOT "/set/load"
+  #define MQTT_LOAD_GET       MQTT_ROOT "/get/load"
+  bool powerState = 0;
+  bool lastPowerState = 0;
 #endif
 
 
