@@ -19,18 +19,21 @@
 
 
 /* DEVICE CONFIGURATION */
-#define VERSION_N               "0.0.1"
+#define VERSION_N               001
 #define DEVICE_TYPE             "mains-light-controller"
 #define DEVICE_ID               "ceiling-light"
 #define DEVICE_LOCATION         "living-room"
 
 
+/* WIFI */
+#define WIFI_AP_NAME            DEVICE_ID "-AP"
+#define WIFI_HOSTNAME           DEVICE_TYPE ":" DEVICE_ID
 
 /* MQTT */
-#define MQTT_ADDRESS            "HomeAutoPi.local"
-#define MQTT_SERVER_PORT        1883
-#define MQTT_USER               "esp-ceiling-light"
-#define MQTT_PSK                "DankMemes420"
+#define MQTT_SERVER             "hassio.local"
+#define MQTT_SERVER_PORT        "1883"
+#define MQTT_USER               "esp-device"
+#define MQTT_PSK                "mypass"
 
 #define MQTT_CHECKIN_REPORT     "device/checkin"
 #define MQTT_ROOT               "home/living/ceiling"
@@ -55,6 +58,24 @@
 #define HUMIDITY_PIN            false   // TBD
 
 
+
+
+/* NETWORK */
+WiFiClient socket;
+PubSubClient network(socket);
+WiFiManager wifiManager;
+bool shouldSaveConfig = false;
+char mqtt_server[64] = MQTT_SERVER;
+char mqtt_port[64] = MQTT_SERVER_PORT;
+char mqtt_username[64] = MQTT_USER;
+char mqtt_password[64] = MQTT_PSK;
+WiFiManagerParameter custom_mqtt_server("server", "MQTT server", mqtt_server, 64);
+WiFiManagerParameter custom_mqtt_port("port", "MQTT port", mqtt_port, 64);
+WiFiManagerParameter custom_mqtt_username("user", "MQTT username", mqtt_username, 64);
+WiFiManagerParameter custom_mqtt_password("pass", "MQTT password", mqtt_password, 64);
+
+
+
 /* SWITCH SENSING */
 uint8_t sense_avg_index = 0;
 const uint8_t SENSE_AVG_MAX_SAMPLES = 50;
@@ -77,8 +98,5 @@ const uint32_t middlePressDuration = 5000;
 const uint32_t longPressDuration = 10000;
 
 
-
-WiFiClient socket;
-PubSubClient network(socket);
+/* MISC */
 StatusLED LED(STATUS_LED_PIN);
-WiFiManager wifiManager;

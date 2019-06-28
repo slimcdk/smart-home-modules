@@ -8,8 +8,6 @@
 #include "conf.h"
 
 
-
-
 void setup() {
   Serial.begin(9600);
   LED.init();
@@ -35,23 +33,40 @@ void setup() {
   ArduinoOTA.setHostname(DEVICE_TYPE DEVICE_ID);
   ArduinoOTA.begin();
 
-
+ 
   /* WIFI CONNECTION CONFIGURATION */
-  WiFi.hostname( DEVICE_TYPE ":" DEVICE_ID );
+  WiFi.hostname(WIFI_HOSTNAME /*":"+ESP.getChipId()*/);
   //wifiManager.resetSettings();
   wifiManager.setAPCallback(configModeCallback);
-  if(!wifiManager.autoConnect( DEVICE_ID"-AP") ) {
+
+  wifiManager.addParameter(&custom_mqtt_server);
+  wifiManager.addParameter(&custom_mqtt_port);
+  wifiManager.addParameter(&custom_mqtt_username);
+  wifiManager.addParameter(&custom_mqtt_password);
+
+  if(!wifiManager.autoConnect(WIFI_AP_NAME /*":" + String(ESP.getChipId())*/ )) {
     LED.code(LED.WARNING);
     delay(1000);
     ESP.reset();
   }
 
+  String _port = String( custom_mqtt_port.getValue() );
+
+  Serial.println("GOT INFO");
+  Serial.println( custom_mqtt_server.getValue() );
+  Serial.println( custom_mqtt_port.getValue() );
+  Serial.println( _port.toInt() );
+  Serial.println( custom_mqtt_username.getValue() );
+  Serial.println( custom_mqtt_password.getValue() );
+
+
   /* MQTT CONFIGURATION */
-  network.setServer(MQTT_ADDRESS, MQTT_SERVER_PORT);
+  network.setServer(custom_mqtt_server.getValue(), _port.toInt());
+  //network.setServer(MQTT_SERVER, MQTT_SERVER_PORT);
   network.setCallback(callback);
  
   while (!network.connected()) {
-    if (network.connect(DEVICE_ID, MQTT_USER, MQTT_PSK )) {
+    if (network.connect(DEVICE_ID, custom_mqtt_username.getValue(), custom_mqtt_password.getValue())) {
       LED.code(LED.WARNING);
     } else {
       LED.code(LED.WARNING);
@@ -118,6 +133,7 @@ void setup() {
 /* WIFI MANAGER CALLBACK */
 void configModeCallback (WiFiManager *myWiFiManager) {
   WiFi.softAPIP();
+  shouldSaveConfig = true;
 }
 
 
