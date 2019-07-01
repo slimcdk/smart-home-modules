@@ -30,21 +30,25 @@ void setup() {
     LED.code(LED.GOOD);
   });
 
-  ArduinoOTA.setHostname(DEVICE_TYPE DEVICE_ID);
+  // ArduinoOTA.setHostname( DEVICE_ID + String(ESP.getChipId()) );
   ArduinoOTA.begin();
 
  
   /* WIFI CONNECTION CONFIGURATION */
-  WiFi.hostname(WIFI_HOSTNAME /*":"+ESP.getChipId()*/);
+  WiFi.hostname( DEVICE_ID + String(ESP.getChipId()) );
   //wifiManager.resetSettings();
   wifiManager.setAPCallback(configModeCallback);
 
-  wifiManager.addParameter(&custom_mqtt_server);
-  wifiManager.addParameter(&custom_mqtt_port);
-  wifiManager.addParameter(&custom_mqtt_username);
-  wifiManager.addParameter(&custom_mqtt_password);
-
-  if(!wifiManager.autoConnect(WIFI_AP_NAME /*":" + String(ESP.getChipId())*/ )) {
+  wifiManager.addParameter(&c_device_name);
+  wifiManager.addParameter(&c_mqtt_server);
+  wifiManager.addParameter(&c_mqtt_port);
+  wifiManager.addParameter(&c_mqtt_username);
+  wifiManager.addParameter(&c_mqtt_password);
+  //wifiManager.setConfigPortalBlocking(false);
+  
+  char WIFI_AP_NAME[80];
+  sprintf(WIFI_AP_NAME, "%s:%s-AP ", DEVICE_ID, deviceLocation);
+  if(!wifiManager.autoConnect(WIFI_AP_NAME)) {
     LED.code(LED.WARNING);
     wifiManager.resetSettings();
     delay(1000);
@@ -53,13 +57,13 @@ void setup() {
 
 
   /* MQTT CONFIGURATION */
-  String _port = String(custom_mqtt_port.getValue());
-  network.setServer(custom_mqtt_server.getValue(), _port.toInt());
-  network.setCallback(callback);
-  while (!network.connected()) {
-    if (!network.connect(DEVICE_ID, custom_mqtt_username.getValue(), custom_mqtt_password.getValue())) {
+  deviceLocation = c_device_location.getValue();
+  String _port = String(c_mqtt_port.getValue());
+  mqtt.setServer(c_mqtt_server.getValue(), _port.toInt());
+  mqtt.setCallback(callback);
+  while (!mqtt.connected()) {
+    if (!mqtt.connect(DEVICE_ID, c_mqtt_username.getValue(), c_mqtt_password.getValue())) {
       LED.code(LED.WARNING);
-      wifiManager.resetSettings();
       delay(1000);
       ESP.reset();
     }
@@ -79,9 +83,11 @@ void configModeCallback (WiFiManager *myWiFiManager) {
 
 
 void loop() {
+  LED.code(LED.GOOD);
   ArduinoOTA.handle();
 
-  if (!client.connected()) {
+  // check MQTT network status
+  if (!mqtt.connected()) {
     if (millis() - lastReconnectAttempt > 5000) {
       lastReconnectAttempt = millis();
       if (mqttReconnect()) {
@@ -89,12 +95,9 @@ void loop() {
       }
     }
   } else {
-    network.loop();
+    mqtt.loop();
   }
 
-
-
-  LED.code(LED.GOOD);
 
   bool sw = readMainsSwitch();
 
@@ -208,7 +211,7 @@ void publishSensorData(const char* topic, uint16_t _data){
 
   char buffer[MQTT_MAX_PACKET_SIZE];
   uint16_t n = serializeJson(data, buffer);
-  network.publish(topic, buffer, n);
+  mqtt.publish(topic, buffer, n);
 }
 
 void publishDeviceHealth() {
@@ -219,7 +222,7 @@ void publishDeviceHealth() {
 
   char buffer[MQTT_MAX_PACKET_SIZE];
   uint16_t n = serializeJson(data, buffer);
-  network.publish(MQTT_DEVICE_HEALTH, buffer, n);
+  mqtt.publish(MQTT_DEVICE_HEALTH, buffer, n);
 }
 
 void publishAllData() {
@@ -227,7 +230,7 @@ void publishAllData() {
   publishDeviceHealth();
   publishSensorData(MQTT_SWITCH,        readMainsSwitch() );
   publishSensorData(MQTT_LIGHT_LEVEL,   readLightLevel() );
-  publishSensorData(MQTT_OUTPUT_LOAD,   readPowerState() );
+  //publishSensorData(MQTT_OUTPUT_LOAD,   readPowerState() );
   publishSensorData(MQTT_TEMPERATURE,   readTemperature() );
   publishSensorData(MQTT_HUMIDITY,      readHumidity() );
 }
@@ -238,30 +241,31 @@ void mqttCheckin() {
   DynamicJsonDocument report(_capacity);
 
   report["device"] = DEVICE_TYPE;
-  report["id"] = DEVICE_ID;
-  report["timestamp"] = 0;
-  report["status"] = "on";
+  report["id"] = DEVICE_ID "-" + String(ESP.getChipId());
+  report["location"] = deviceLocation;
+  report["uptime"] = millis() / 1000;
   report["version"] = VERSION_N;
   
   // transmit topic
   char buffer[MQTT_MAX_PACKET_SIZE];
   uint16_t n = serializeJson(report, buffer);
-  network.publish(MQTT_CHECKIN_REPORT, buffer, n);
+  mqtt.publish(MQTT_CHECKIN_REPORT, buffer, n);
 }
 
 // listen to topics
 void mqttListen() {
-  network.subscribe(MQTT_OUTPUT_LOAD);
-  network.subscribe(MQTT_ROOT);
-  network.subscribe(MQTT_DEVICE_HEALTH);
+  mqtt.subscribe(MQTT_OUTPUT_LOAD);
+  mqtt.subscribe(MQTT_ROOT);
+  mqtt.subscribe(MQTT_DEVICE_HEALTH);
 }
 
+// reconnect to broker
 boolean mqttReconnect() {
-  if (network.connect("arduinoClient")) {
+  if (mqtt.connect(DEVICE_ID, c_mqtt_username.getValue(), c_mqtt_password.getValue())) {
     mqttCheckin();
     mqttListen();
   }
-  return network.connected();
+  return mqtt.connected();
 }
 
 

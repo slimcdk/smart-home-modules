@@ -19,24 +19,23 @@
 
 
 /* DEVICE CONFIGURATION */
-#define VERSION_N               001
-#define DEVICE_TYPE             "mains-light-controller"
-#define DEVICE_ID               "ceiling-light"
-#define DEVICE_LOCATION         "living-room"
+#define VERSION_MAJOR           0
+#define VERSION_MINOR           0
+#define VERSION_PATCH           1
+#define VERSION_N               VERSION_MAJOR "." VERSION_MINOR "." VERSION_PATCH
+#define DEVICE_TYPE             "mains-multi-unit"
+#define DEVICE_ID               "ceiling-unit"
+#define DEVICE_LOCATION         "room"
 
-
-/* WIFI */
-#define WIFI_AP_NAME            DEVICE_ID "-AP"
-#define WIFI_HOSTNAME           DEVICE_TYPE ":" DEVICE_ID
 
 /* MQTT */
 #define MQTT_SERVER             "hassio.local"
 #define MQTT_SERVER_PORT        "1883"
 #define MQTT_USER               "esp-device"
-#define MQTT_PSK                "DankMemes420"
+#define MQTT_PSK                "0123456789"
 
 #define MQTT_CHECKIN_REPORT     "device/checkin"
-#define MQTT_ROOT               "home/living/ceiling"
+#define MQTT_ROOT               "home/" + deviceLocation + "/" + DEVICE_ID
 #define MQTT_DEVICE_HEALTH      MQTT_ROOT "/device-health"
 #define MQTT_OUTPUT_LOAD        MQTT_ROOT "/output"
 #define MQTT_SWITCH             MQTT_ROOT "/switch"
@@ -61,18 +60,22 @@
 
 /* NETWORK */
 WiFiClient socket;
-PubSubClient network(socket);
+PubSubClient mqtt(socket);
 WiFiManager wifiManager;
 bool shouldSaveConfig = false;
 uint64_t lastReconnectAttempt = 0;
-char mqtt_server[64] = MQTT_SERVER;
-char mqtt_port[64] = MQTT_SERVER_PORT;
-char mqtt_username[64] = MQTT_USER;
-char mqtt_password[64] = MQTT_PSK;
-WiFiManagerParameter custom_mqtt_server("server", "MQTT server", mqtt_server, 64);
-WiFiManagerParameter custom_mqtt_port("port", "MQTT port", mqtt_port, 64);
-WiFiManagerParameter custom_mqtt_username("user", "MQTT username", mqtt_username, 64);
-WiFiManagerParameter custom_mqtt_password("pass", "MQTT password", mqtt_password, 64, "type='password'");
+
+
+char deviceLocation[33] = DEVICE_LOCATION;
+char mqttServer[64] = MQTT_SERVER;
+char mqttPort[64] = MQTT_SERVER_PORT;
+char mqttUsername[64] = MQTT_USER;
+char mqttPassword[64] = MQTT_PSK;
+WiFiManagerParameter c_device_name("device_name", "Device name", deviceLocation, 64);
+WiFiManagerParameter c_mqtt_server("server", "MQTT server", mqttServer, 64);
+WiFiManagerParameter c_mqtt_port("port", "MQTT port", mqttPort, 5);
+WiFiManagerParameter c_mqtt_username("user", "MQTT username", mqttUsername, 64);
+WiFiManagerParameter c_mqtt_password("pass", "MQTT password", mqttPassword, 64, "type='password'");
 
 
 
