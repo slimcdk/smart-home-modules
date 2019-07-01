@@ -12,57 +12,58 @@ void setup() {
   Serial.begin(9600);
   LED.init();
 
+
   /* IO CONFIGURATION */
   pinMode(MAINS_SWITCH_PIN, INPUT);
   pinMode(LIGHT_LEVEL_PIN, INPUT);
   pinMode(OUTPUT_LOAD_PIN, OUTPUT);
 
+
   /* ARDUINO 'OVER THE AIR' CONFIGURATION */
   ArduinoOTA.onStart( []() {
     LED.code(LED.NEUTRAL);
   });
-
   ArduinoOTA.onProgress( [](unsigned int progress, unsigned int total) {
     LED.code(LED.BUSY);
   });
-
   ArduinoOTA.onEnd( []() {
     LED.code(LED.GOOD);
   });
-
   // ArduinoOTA.setHostname( DEVICE_ID + String(ESP.getChipId()) );
   ArduinoOTA.begin();
 
- 
-  /* WIFI CONNECTION CONFIGURATION */
-  WiFi.hostname( DEVICE_ID + String(ESP.getChipId()) );
-  //wifiManager.resetSettings();
-  wifiManager.setAPCallback(configModeCallback);
 
-  wifiManager.addParameter(&c_device_name);
+  // Create identifiers
+  sprintf(DEVICE_ID, "ESP%d", ESP.getChipId());
+  sprintf(DEVICE_AP_NAME, "%s:ESP%d-AP", DEVICE_TYPE, ESP.getChipId());
+  sprintf(DEVICE_MQTT_ID, "%s:%s:ESP%d", DEVICE_LOCATION, DEVICE_POSIITON, ESP.getChipId());
+
+  Serial.println(DEVICE_ID);Serial.println(DEVICE_AP_NAME);Serial.println(DEVICE_MQTT_ID);
+
+  /* WIFI CONNECTION CONFIGURATION */
+  WiFi.hostname( DEVICE_ID );
+  wifiManager.setAPCallback(configModeCallback);
+  //wifiManager.addParameter(&c_device_location);
   wifiManager.addParameter(&c_mqtt_server);
   wifiManager.addParameter(&c_mqtt_port);
   wifiManager.addParameter(&c_mqtt_username);
   wifiManager.addParameter(&c_mqtt_password);
-  //wifiManager.setConfigPortalBlocking(false);
   
-  char WIFI_AP_NAME[80];
-  sprintf(WIFI_AP_NAME, "%s:%s-AP ", DEVICE_ID, deviceLocation);
-  if(!wifiManager.autoConnect(WIFI_AP_NAME)) {
+
+  
+  
+  if( !wifiManager.autoConnect(DEVICE_AP_NAME) ) {
     LED.code(LED.WARNING);
-    wifiManager.resetSettings();
     delay(1000);
     ESP.reset();
   }
 
-
   /* MQTT CONFIGURATION */
-  deviceLocation = c_device_location.getValue();
   String _port = String(c_mqtt_port.getValue());
   mqtt.setServer(c_mqtt_server.getValue(), _port.toInt());
   mqtt.setCallback(callback);
-  while (!mqtt.connected()) {
-    if (!mqtt.connect(DEVICE_ID, c_mqtt_username.getValue(), c_mqtt_password.getValue())) {
+  while ( !mqtt.connected() ) {
+    if ( !mqtt.connect(DEVICE_MQTT_ID, c_mqtt_username.getValue(), c_mqtt_password.getValue()) ) {
       LED.code(LED.WARNING);
       delay(1000);
       ESP.reset();
@@ -215,10 +216,11 @@ void publishSensorData(const char* topic, uint16_t _data){
 }
 
 void publishDeviceHealth() {
-  const uint16_t _capacity = JSON_OBJECT_SIZE(2);
+  const uint16_t _capacity = JSON_OBJECT_SIZE(3);
   DynamicJsonDocument data(_capacity);
 
-  data["timestamp"] = 0;
+  data["uptime"] = millis() / 1000;
+  data["current_issue"] = 0;
 
   char buffer[MQTT_MAX_PACKET_SIZE];
   uint16_t n = serializeJson(data, buffer);
@@ -237,14 +239,17 @@ void publishAllData() {
 
 // create checkin report
 void mqttCheckin() {
-  const uint16_t _capacity = JSON_OBJECT_SIZE(6);
+  const uint16_t _capacity = JSON_OBJECT_SIZE(8);
   DynamicJsonDocument report(_capacity);
-
-  report["device"] = DEVICE_TYPE;
-  report["id"] = DEVICE_ID "-" + String(ESP.getChipId());
-  report["location"] = deviceLocation;
-  report["uptime"] = millis() / 1000;
-  report["version"] = VERSION_N;
+  
+  // structure of data 
+  report["type"]        = DEVICE_TYPE;
+  report["position"]    = DEVICE_POSIITON;
+  report["location"]    = DEVICE_LOCATION;
+  report["id"]          = DEVICE_ID;
+  report["version"]     = VERSION_N;
+  report["uptime"]      = millis() / 1000;
+  report["base_topic"]  = MQTT_ROOT;
   
   // transmit topic
   char buffer[MQTT_MAX_PACKET_SIZE];
@@ -267,19 +272,3 @@ boolean mqttReconnect() {
   }
   return mqtt.connected();
 }
-
-
-
-
-
-/* UNUSED
-void setOutput(uint8_t _percent) {
-
-  // constrain and map values
-  uint8_t _p = constrain(_percent, 0, 100);
-  uint8_t _l = map(_p, 0, 100, 0, 255);
-  uint8_t _level = constrain(_l, 0, 255);
-
-  analogWrite(OUTPUT_LOAD_PIN, _level);
-}
-*/

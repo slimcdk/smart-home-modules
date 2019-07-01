@@ -19,13 +19,20 @@
 
 
 /* DEVICE CONFIGURATION */
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
+
 #define VERSION_MAJOR           0
 #define VERSION_MINOR           0
 #define VERSION_PATCH           1
-#define VERSION_N               VERSION_MAJOR "." VERSION_MINOR "." VERSION_PATCH
+#define VERSION_N               STR(VERSION_MAJOR) "." STR(VERSION_MINOR) "." STR(VERSION_PATCH)
+
 #define DEVICE_TYPE             "mains-multi-unit"
-#define DEVICE_ID               "ceiling-unit"
-#define DEVICE_LOCATION         "room"
+#define DEVICE_POSIITON         "ceiling-unit"
+#define DEVICE_LOCATION         "living-room"
+char DEVICE_ID[80];
+char DEVICE_AP_NAME[80];
+char DEVICE_MQTT_ID[80];
 
 
 /* MQTT */
@@ -35,7 +42,7 @@
 #define MQTT_PSK                "0123456789"
 
 #define MQTT_CHECKIN_REPORT     "device/checkin"
-#define MQTT_ROOT               "home/" + deviceLocation + "/" + DEVICE_ID
+#define MQTT_ROOT               "home/" DEVICE_LOCATION "/" DEVICE_POSIITON
 #define MQTT_DEVICE_HEALTH      MQTT_ROOT "/device-health"
 #define MQTT_OUTPUT_LOAD        MQTT_ROOT "/output"
 #define MQTT_SWITCH             MQTT_ROOT "/switch"
@@ -44,6 +51,7 @@
 #define MQTT_BUTTON             MQTT_ROOT "/button"
 #define MQTT_HUMIDITY           MQTT_ROOT "/humidity"
 #define MQTT_STATUS_LED         MQTT_ROOT "/statusled"
+
 
 
 /* HARDWARE CONFIGURATION */    // BB   // PCB config
@@ -57,26 +65,22 @@
 
 
 
-
 /* NETWORK */
+bool shouldSaveConfig = false;
+uint64_t lastReconnectAttempt = 0;
+//char deviceLocation[33] = DEVICE_LOCATION;
+const char* mqttServer = MQTT_SERVER;
+const char* mqttPort = MQTT_SERVER_PORT;
+const char* mqttUsername = MQTT_USER;
+const char* mqttPassword = MQTT_PSK;
+//WiFiManagerParameter c_device_name("device_name", "Device name", deviceLocation, 64);
+WiFiManagerParameter c_mqtt_server("server", "MQTT server", mqttServer, 64);
+WiFiManagerParameter c_mqtt_port("port", "MQTT port", mqttPort, 8);
+WiFiManagerParameter c_mqtt_username("user", "MQTT username", mqttUsername, 64);
+WiFiManagerParameter c_mqtt_password("pass", "MQTT password", mqttPassword, 64, "type='password'");
 WiFiClient socket;
 PubSubClient mqtt(socket);
 WiFiManager wifiManager;
-bool shouldSaveConfig = false;
-uint64_t lastReconnectAttempt = 0;
-
-
-char deviceLocation[33] = DEVICE_LOCATION;
-char mqttServer[64] = MQTT_SERVER;
-char mqttPort[64] = MQTT_SERVER_PORT;
-char mqttUsername[64] = MQTT_USER;
-char mqttPassword[64] = MQTT_PSK;
-WiFiManagerParameter c_device_name("device_name", "Device name", deviceLocation, 64);
-WiFiManagerParameter c_mqtt_server("server", "MQTT server", mqttServer, 64);
-WiFiManagerParameter c_mqtt_port("port", "MQTT port", mqttPort, 5);
-WiFiManagerParameter c_mqtt_username("user", "MQTT username", mqttUsername, 64);
-WiFiManagerParameter c_mqtt_password("pass", "MQTT password", mqttPassword, 64, "type='password'");
-
 
 
 /* SWITCH SENSING */

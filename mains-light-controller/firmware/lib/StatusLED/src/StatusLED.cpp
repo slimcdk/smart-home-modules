@@ -30,7 +30,7 @@ void StatusLED::code(uint8_t code) {
       break;
     
     case WARNING:
-      color = WS2812.Color(255, 255, 0);
+      color = WS2812.Color(255, 100, 0);
       blink(1000, 20);
       break;
     
