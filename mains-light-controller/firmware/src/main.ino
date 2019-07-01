@@ -46,93 +46,33 @@ void setup() {
 
   if(!wifiManager.autoConnect(WIFI_AP_NAME /*":" + String(ESP.getChipId())*/ )) {
     LED.code(LED.WARNING);
+    wifiManager.resetSettings();
     delay(1000);
     ESP.reset();
   }
 
-  String _port = String( custom_mqtt_port.getValue() );
-
-  Serial.println("GOT INFO");
-  Serial.println( custom_mqtt_server.getValue() );
-  Serial.println( custom_mqtt_port.getValue() );
-  Serial.println( _port.toInt() );
-  Serial.println( custom_mqtt_username.getValue() );
-  Serial.println( custom_mqtt_password.getValue() );
-
 
   /* MQTT CONFIGURATION */
+  String _port = String(custom_mqtt_port.getValue());
   network.setServer(custom_mqtt_server.getValue(), _port.toInt());
-  //network.setServer(MQTT_SERVER, MQTT_SERVER_PORT);
   network.setCallback(callback);
- 
   while (!network.connected()) {
-    if (network.connect(DEVICE_ID, custom_mqtt_username.getValue(), custom_mqtt_password.getValue())) {
+    if (!network.connect(DEVICE_ID, custom_mqtt_username.getValue(), custom_mqtt_password.getValue())) {
       LED.code(LED.WARNING);
-    } else {
-      LED.code(LED.WARNING);
+      wifiManager.resetSettings();
       delay(1000);
       ESP.reset();
     }
   }
-
-  // create checkin report for available topics
-  const uint16_t _capacity = JSON_OBJECT_SIZE(6+3+2+2+2+2+2) + JSON_ARRAY_SIZE(6);
-  DynamicJsonDocument report(_capacity);
-
-  report["device"] = DEVICE_TYPE;
-  report["id"] = DEVICE_ID;
-  report["timestamp"] = 0;
-  report["status"] = "on";
-  report["version"] = VERSION_N;
-  
-  JsonArray topics = report.createNestedArray("topics");
-    
-  // output / load
-  JsonObject load = topics.createNestedObject();
-  load["type"] = "load";
-  load["set"] = MQTT_LOAD_SUB;
-  load["get"] = MQTT_LOAD_PUB;
-  
-  // mains switch
-  JsonObject sw = topics.createNestedObject();
-  sw["type"] = "switch";
-  sw["get"] = MQTT_SWITCH_PUB;
-
-  // light level
-  JsonObject ll = topics.createNestedObject();
-  ll["type"] = "light_level";
-  ll["get"] = MQTT_LIGHT_LEVEL_PUB;
-
-  // temperature
-  JsonObject temperature = topics.createNestedObject();
-  temperature["type"] = "temperature";
-  temperature["get"] = MQTT_TEMPERATURE_PUB;
-
-  // humidity
-  JsonObject humidity = topics.createNestedObject();
-  humidity["type"] = "humidity";
-  humidity["get"] = MQTT_HUMIDITY_PUB;
-
-  // button
-  JsonObject button = topics.createNestedObject();
-  button["type"] = "button";
-  button["get"] = MQTT_BUTTON_PUB;
-
-  // transmit topic
-  char buffer[MQTT_MAX_PACKET_SIZE];
-  uint16_t n = serializeJson(report, buffer);
-  network.publish(MQTT_CHECKIN_REPORT, buffer, n);
-
-  // listen to topics
-  network.subscribe(MQTT_LOAD_SUB);
-  network.subscribe(MQTT_ROOT);
-  network.subscribe(MQTT_DEVICE_HEALTH);
+  mqttCheckin();
+  mqttListen();
+  lastReconnectAttempt = 0;
 }
 
 
 /* WIFI MANAGER CALLBACK */
 void configModeCallback (WiFiManager *myWiFiManager) {
-  WiFi.softAPIP();
+  //WiFi.softAPIP();
   shouldSaveConfig = true;
 }
 
@@ -140,75 +80,56 @@ void configModeCallback (WiFiManager *myWiFiManager) {
 
 void loop() {
   ArduinoOTA.handle();
-  network.loop();
+
+  if (!client.connected()) {
+    if (millis() - lastReconnectAttempt > 5000) {
+      lastReconnectAttempt = millis();
+      if (mqttReconnect()) {
+        lastReconnectAttempt = 0;
+      }
+    }
+  } else {
+    network.loop();
+  }
+
+
+
   LED.code(LED.GOOD);
 
-  bool sw = senseSwitch();
+  bool sw = readMainsSwitch();
 
-  
-    // stage change event
+  // stage change event
   if (sw != lastSwitchState) {
     lastSwitchState = sw;
     powerState = (powerState + 1) % 2;
+    publishSensorData(MQTT_OUTPUT_LOAD, readPowerState());
   }
 
-
-  // toggle output and MQTT broadcast event
-  if (powerState != lastPowerState) {
-    lastPowerState = powerState;
-    setOutput(powerState);
-    //broadcastOutput(powerState);
-    publishSensorData(MQTT_LOAD_PUB, powerState);
-  }
-
+  setOutput(powerState);
 
   // broadcast every 1 min interval
-  if ( (millis() - lastBroadcast) > 1000*10 ) {
+  if ( (millis() - lastBroadcast) > 1000*5 ) {
     lastBroadcast = millis();
     publishAllData();
   }
 
 /*
-  startPressDuration = millis();
-  while ( readButton() ) { 
-    Serial.println(millis() - startPressDuration); 
-    network.loop();  
-  }
-  pressDuration = millis() - startPressDuration;
-
-
-  if ( pressDuration > 1 ) {
-    if (pressDuration <= shortPressDuration)
-    {
-      
-    } 
-    else if (pressDuration <= middlePressDuration)
-    {
-      Serial.println("reset");
-      ESP.reset();
-    } 
-    else if (pressDuration <= longPressDuration)
-    {      
-      Serial.println("restart");
+  if (readButton()) {
+    LED.code(LED.WARNING);
+    if ( millis() - startPressDuration > 5000) {
       wifiManager.resetSettings();
       ESP.restart();
+      delay(1000);
     }
-    else 
-    {
-    }
+  } else {
+    startPressDuration = millis();
   }
-  else 
-  {
-  }
-*/
+  */
 }
 
 
-
-
-
 /* IO INTERACTIONS */
-bool senseSwitch() {
+bool readMainsSwitch() {
 
   // running average
   sense_avg[sense_avg_index] = !digitalRead(MAINS_SWITCH_PIN);
@@ -252,7 +173,7 @@ void setOutput(bool _power) {
 /* MQTT BROADCASTS */
 void callback(char* topic, byte* payload, unsigned int length) {
 
-  if ( strcmp(topic, MQTT_LOAD_SUB) == 0 ) {
+  if ( strcmp(topic, MQTT_OUTPUT_LOAD) == 0 ) {
 
     // deserialize JSON message
     const size_t _capacity = JSON_OBJECT_SIZE(1);
@@ -267,7 +188,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     
   }
 
-  if ( strcmp(topic, MQTT_STATUS_LED_SUB) == 0 ) {
+  if ( strcmp(topic, MQTT_STATUS_LED) == 0 ) {
 
     // deserialize JSON message
     const size_t _capacity = JSON_OBJECT_SIZE(1);
@@ -304,12 +225,45 @@ void publishDeviceHealth() {
 void publishAllData() {
   // broadcast device health and sensor readings
   publishDeviceHealth();
-  publishSensorData(MQTT_SWITCH_PUB,        senseSwitch() );
-  publishSensorData(MQTT_LIGHT_LEVEL_PUB,   readLightLevel() );
-  publishSensorData(MQTT_LOAD_PUB,          readPowerState() );
-  publishSensorData(MQTT_TEMPERATURE_PUB,   readTemperature() );
-  publishSensorData(MQTT_HUMIDITY_PUB,      readHumidity() );
+  publishSensorData(MQTT_SWITCH,        readMainsSwitch() );
+  publishSensorData(MQTT_LIGHT_LEVEL,   readLightLevel() );
+  publishSensorData(MQTT_OUTPUT_LOAD,   readPowerState() );
+  publishSensorData(MQTT_TEMPERATURE,   readTemperature() );
+  publishSensorData(MQTT_HUMIDITY,      readHumidity() );
 }
+
+// create checkin report
+void mqttCheckin() {
+  const uint16_t _capacity = JSON_OBJECT_SIZE(6);
+  DynamicJsonDocument report(_capacity);
+
+  report["device"] = DEVICE_TYPE;
+  report["id"] = DEVICE_ID;
+  report["timestamp"] = 0;
+  report["status"] = "on";
+  report["version"] = VERSION_N;
+  
+  // transmit topic
+  char buffer[MQTT_MAX_PACKET_SIZE];
+  uint16_t n = serializeJson(report, buffer);
+  network.publish(MQTT_CHECKIN_REPORT, buffer, n);
+}
+
+// listen to topics
+void mqttListen() {
+  network.subscribe(MQTT_OUTPUT_LOAD);
+  network.subscribe(MQTT_ROOT);
+  network.subscribe(MQTT_DEVICE_HEALTH);
+}
+
+boolean mqttReconnect() {
+  if (network.connect("arduinoClient")) {
+    mqttCheckin();
+    mqttListen();
+  }
+  return network.connected();
+}
+
 
 
 

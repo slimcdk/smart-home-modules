@@ -33,19 +33,18 @@
 #define MQTT_SERVER             "hassio.local"
 #define MQTT_SERVER_PORT        "1883"
 #define MQTT_USER               "esp-device"
-#define MQTT_PSK                "mypass"
+#define MQTT_PSK                "DankMemes420"
 
 #define MQTT_CHECKIN_REPORT     "device/checkin"
 #define MQTT_ROOT               "home/living/ceiling"
 #define MQTT_DEVICE_HEALTH      MQTT_ROOT "/device-health"
-#define MQTT_LOAD_PUB           MQTT_ROOT "/get/load"
-#define MQTT_LOAD_SUB           MQTT_ROOT "/set/load"
-#define MQTT_SWITCH_PUB         MQTT_ROOT "/get/switch"
-#define MQTT_LIGHT_LEVEL_PUB    MQTT_ROOT "/get/lightlevel"
-#define MQTT_TEMPERATURE_PUB    MQTT_ROOT "/get/temperature"
-#define MQTT_BUTTON_PUB         MQTT_ROOT "/get/button"
-#define MQTT_HUMIDITY_PUB       MQTT_ROOT "/get/humidity"
-#define MQTT_STATUS_LED_SUB     MQTT_ROOT "/set/statusled"
+#define MQTT_OUTPUT_LOAD        MQTT_ROOT "/output"
+#define MQTT_SWITCH             MQTT_ROOT "/switch"
+#define MQTT_LIGHT_LEVEL        MQTT_ROOT "/lightlevel"
+#define MQTT_TEMPERATURE        MQTT_ROOT "/temperature"
+#define MQTT_BUTTON             MQTT_ROOT "/button"
+#define MQTT_HUMIDITY           MQTT_ROOT "/humidity"
+#define MQTT_STATUS_LED         MQTT_ROOT "/statusled"
 
 
 /* HARDWARE CONFIGURATION */    // BB   // PCB config
@@ -65,6 +64,7 @@ WiFiClient socket;
 PubSubClient network(socket);
 WiFiManager wifiManager;
 bool shouldSaveConfig = false;
+uint64_t lastReconnectAttempt = 0;
 char mqtt_server[64] = MQTT_SERVER;
 char mqtt_port[64] = MQTT_SERVER_PORT;
 char mqtt_username[64] = MQTT_USER;
@@ -72,7 +72,7 @@ char mqtt_password[64] = MQTT_PSK;
 WiFiManagerParameter custom_mqtt_server("server", "MQTT server", mqtt_server, 64);
 WiFiManagerParameter custom_mqtt_port("port", "MQTT port", mqtt_port, 64);
 WiFiManagerParameter custom_mqtt_username("user", "MQTT username", mqtt_username, 64);
-WiFiManagerParameter custom_mqtt_password("pass", "MQTT password", mqtt_password, 64);
+WiFiManagerParameter custom_mqtt_password("pass", "MQTT password", mqtt_password, 64, "type='password'");
 
 
 
@@ -91,11 +91,7 @@ bool lastPowerState = 0;
 /* NON-BLOCKING EVENT TIMERS  */
 uint64_t lastBroadcast = 0;
 uint32_t startPressDuration = 0;
-uint32_t pressDuration = 0;
 
-const uint32_t shortPressDuration = 500;
-const uint32_t middlePressDuration = 5000;
-const uint32_t longPressDuration = 10000;
 
 
 /* MISC */
