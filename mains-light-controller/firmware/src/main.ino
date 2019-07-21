@@ -21,24 +21,22 @@ void setup() {
 
   /* ARDUINO 'OVER THE AIR' CONFIGURATION */
   ArduinoOTA.onStart( []() {
-    LED.code(LED.NEUTRAL);
+    //LED.code(LED.NEUTRAL);
   });
   ArduinoOTA.onProgress( [](unsigned int progress, unsigned int total) {
-    LED.code(LED.BUSY);
+    //LED.code(LED.BUSY);
   });
   ArduinoOTA.onEnd( []() {
-    LED.code(LED.GOOD);
+    //LED.code(LED.GOOD);
   });
   // ArduinoOTA.setHostname( DEVICE_ID + String(ESP.getChipId()) );
   ArduinoOTA.begin();
 
-
   // Create identifiers
-  sprintf(DEVICE_ID, "ESP%d", ESP.getChipId());
-  sprintf(DEVICE_AP_NAME, "%s:ESP%d-AP", DEVICE_TYPE, ESP.getChipId());
-  sprintf(DEVICE_MQTT_ID, "%s:%s:ESP%d", DEVICE_LOCATION, DEVICE_POSIITON, ESP.getChipId());
-
-  Serial.println(DEVICE_ID);Serial.println(DEVICE_AP_NAME);Serial.println(DEVICE_MQTT_ID);
+  sprintf(CHIP_ID,      "ESP%d",        ESP.getChipId() );
+  sprintf(DEVICE_ID,    "%s:%s:ESP%d",  DEVICE_LOCATION, DEVICE_POSIITON, CHIP_ID );
+  sprintf(DEVICE_ID_AP, "%s-AP",        DEVICE_ID );
+  sprintf(DEVICE_ID_TYPE, "%s:%s",      DEVICE_ID, CHIP_ID );
 
   /* WIFI CONNECTION CONFIGURATION */
   WiFi.hostname( DEVICE_ID );
@@ -48,12 +46,9 @@ void setup() {
   wifiManager.addParameter(&c_mqtt_port);
   wifiManager.addParameter(&c_mqtt_username);
   wifiManager.addParameter(&c_mqtt_password);
-  
-
-  
-  
-  if( !wifiManager.autoConnect(DEVICE_AP_NAME) ) {
-    LED.code(LED.WARNING);
+    
+  if( !wifiManager.autoConnect(DEVICE_ID_AP) ) {
+    //LED.code(LED.WARNING);
     delay(1000);
     ESP.reset();
   }
@@ -63,8 +58,8 @@ void setup() {
   mqtt.setServer(c_mqtt_server.getValue(), _port.toInt());
   mqtt.setCallback(callback);
   while ( !mqtt.connected() ) {
-    if ( !mqtt.connect(DEVICE_MQTT_ID, c_mqtt_username.getValue(), c_mqtt_password.getValue()) ) {
-      LED.code(LED.WARNING);
+    if ( !mqtt.connect(DEVICE_ID, c_mqtt_username.getValue(), c_mqtt_password.getValue()) ) {
+      //LED.code(LED.WARNING);
       delay(1000);
       ESP.reset();
     }
@@ -81,10 +76,8 @@ void configModeCallback (WiFiManager *myWiFiManager) {
   shouldSaveConfig = true;
 }
 
-
-
 void loop() {
-  LED.code(LED.GOOD);
+  //LED.code(LED.GOOD);
   ArduinoOTA.handle();
 
   // check MQTT network status
@@ -119,7 +112,7 @@ void loop() {
 
 /*
   if (readButton()) {
-    LED.code(LED.WARNING);
+    //LED.code(LED.WARNING);
     if ( millis() - startPressDuration > 5000) {
       wifiManager.resetSettings();
       ESP.restart();
@@ -246,7 +239,7 @@ void mqttCheckin() {
   report["type"]        = DEVICE_TYPE;
   report["position"]    = DEVICE_POSIITON;
   report["location"]    = DEVICE_LOCATION;
-  report["id"]          = DEVICE_ID;
+  report["id"]          = CHIP_ID;
   report["version"]     = VERSION_N;
   report["uptime"]      = millis() / 1000;
   report["base_topic"]  = MQTT_ROOT;

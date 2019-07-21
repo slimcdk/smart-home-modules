@@ -29,11 +29,11 @@
 
 #define DEVICE_TYPE             "mains-multi-unit"
 #define DEVICE_POSIITON         "ceiling-unit"
-#define DEVICE_LOCATION         "living-room"
+#define DEVICE_LOCATION         "bedroom"
+char CHIP_ID[80];
 char DEVICE_ID[80];
-char DEVICE_AP_NAME[80];
-char DEVICE_MQTT_ID[80];
-
+char DEVICE_ID_TYPE[80];
+char DEVICE_ID_AP[80];
 
 /* MQTT */
 #define MQTT_SERVER             "hassio.local"
@@ -55,11 +55,11 @@ char DEVICE_MQTT_ID[80];
 
 
 /* HARDWARE CONFIGURATION */    // BB   // PCB config
-#define STATUS_LED_PIN          0       // D2
+#define STATUS_LED_PIN          2       // D2
 #define OUTPUT_LOAD_PIN         4       // D4
-#define MAINS_SWITCH_PIN        2       // D5
+#define MAINS_SWITCH_PIN        5       // D5
 #define LIGHT_LEVEL_PIN         A0      // A0
-#define BUTTON_PIN              13      // D0
+#define BUTTON_PIN              0       // D0
 #define TEMPERATURE_PIN         false   // TBD
 #define HUMIDITY_PIN            false   // TBD
 
