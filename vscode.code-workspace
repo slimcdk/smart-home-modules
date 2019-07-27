@@ -1,5 +1,7 @@
 {
 	"folders": [
+
+		// root
 		{
 			"name": "Repo (root)",
 			"path": "."
@@ -17,7 +19,7 @@
 		{
 			"name": "Ceiling Light (docs)",
 			"path": "ceiling-light/docs"
-		}
+		},
 
 		// radiator valve
 		{
@@ -31,6 +33,20 @@
 		{
 			"name": "Radiator Valve (docs)",
 			"path": "radiator-valve/docs"
+		},
+
+		// mailbox sensor
+		{
+			"name": "Mailbox Sensor (root)",
+			"path": "mailbox-sensor"
+		},
+		{
+			"name": "Mailbox Sensor (firmware)",
+			"path": "mailbox-sensor/firmware"
+		},
+		{
+			"name": "Mailbox Sensor (docs)",
+			"path": "mailbox-sensor/docs"
 		}
 
 	],
