@@ -1,7 +1,9 @@
 <h1>Ceiling Light Controller</h1>
 
 This component can control any loads of mains voltage (120-240VAC) up to 5A.
-Requires constant power and sensing line (main switch).
+Requires constant power and sensing line (main switch) to function as intended.
+
+A [undimmable](circuits/undimmable) and [dimmable](circuits/dimmable) version is available.
 
 <hr>
 <h3>Power inputs</h3>
@@ -10,6 +12,10 @@ Requires constant power and sensing line (main switch).
     <li>M2: Constant power supply</li>
     <li>N: Neutral</li>
 </ul>
+
+
+
+
 
 
 <hr>
