@@ -1,0 +1,38 @@
+{
+	"folders": [
+		{
+			"name": "Repo (root)",
+			"path": "."
+		},
+
+		// ceiling light 
+		{
+			"name": "Ceiling Light (root)",
+			"path": "ceiling-light"
+		},		
+		{
+			"name": "Ceiling Light (firmware)",
+			"path": "ceiling-light/firmware"
+		},
+		{
+			"name": "Ceiling Light (docs)",
+			"path": "ceiling-light/docs"
+		}
+
+		// radiator valve
+		{
+			"name": "Radiator Valve (root)",
+			"path": "radiator-valve"
+		},
+		{
+			"name": "Radiator Valve (firmware)",
+			"path": "radiator-valve/firmware"
+		},
+		{
+			"name": "Radiator Valve (docs)",
+			"path": "radiator-valve/docs"
+		}
+
+	],
+	"settings": {}
+}
