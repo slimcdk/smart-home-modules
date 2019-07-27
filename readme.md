@@ -5,9 +5,9 @@
 
 
 
-<h2>Repository setup</h2>
 <hr>
-To fetch submodules, run the command:
-```
+<h3>Repository setup</h3>
+<p>To fetch submodules, run the command:</p>
+<pre>
 $ git submodule update --init
-```
+</pre>
