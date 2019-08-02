@@ -1,28 +1,6 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# AC_Drivers_slimc_FL51xxMX
-#
-DEF AC_Drivers_slimc_FL51xxMX U 0 40 Y Y 1 F N
-F0 "U" 0 400 50 H V C CNN
-F1 "AC_Drivers_slimc_FL51xxMX" 0 300 50 H V C CNN
-F2 "" -350 400 50 H I C CNN
-F3 "" -350 400 50 H I C CNN
-DRAW
-S -350 250 350 -250 0 1 0 N
-X ZCMon 1 -450 200 100 R 50 50 1 1 I
-X OCSen1 10 450 200 100 L 50 50 1 1 I
-X DIMCN 2 -450 100 100 R 50 50 1 1 I
-X VDD 3 -450 0 100 R 50 50 1 1 W
-X DM 4 -450 -100 100 R 50 50 1 1 I
-X GND 5 -450 -200 100 R 50 50 1 1 W
-X VS 6 450 -200 100 L 50 50 1 1 I
-X LPM 7 450 -100 100 L 50 50 1 1 I
-X OCSen2 8 450 0 100 L 50 50 1 1 I
-X DRVG 9 450 100 100 L 50 50 1 1 I
-ENDDRAW
-ENDDEF
-#
 # Connector_Generic_Conn_01x01
 #
 DEF Connector_Generic_Conn_01x01 J 0 40 Y N 1 F N
@@ -212,28 +190,6 @@ P 2 0 1 0 50 0 -50 0 N
 P 4 0 1 8 50 50 50 -50 -50 0 50 50 N
 X K 1 -150 0 100 R 50 50 1 1 P
 X A 2 150 0 100 L 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# Diode_Bridge_slimc_DB107-BP
-#
-DEF Diode_Bridge_slimc_DB107-BP BR 0 30 Y Y 1 F N
-F0 "BR" 750 300 50 H V L CNN
-F1 "Diode_Bridge_slimc_DB107-BP" 750 200 50 H V L CNN
-F2 "DIP825W56P510L828H330Q4N" 750 100 50 H I L CNN
-F3 "http://www.mccsemi.com/up_pdf/DB101-DB107(DB-1).pdf" 750 0 50 H I L CNN
-F4 "Bridge Rectifiers 1.0A 1000V" 750 -100 50 H I L CNN "Description"
-F5 "3.3" 750 -200 50 H I L CNN "Height"
-F6 "Micro Commercial Components (MCC)" 750 -300 50 H I L CNN "Manufacturer_Name"
-F7 "DB107-BP" 750 -400 50 H I L CNN "Manufacturer_Part_Number"
-F8 "833-DB107-BP" 750 -500 50 H I L CNN "Mouser Part Number"
-F9 "https://www.mouser.com/Search/Refine.aspx?Keyword=833-DB107-BP" 750 -600 50 H I L CNN "Mouser Price/Stock"
-DRAW
-P 5 0 1 6 200 100 700 100 700 -200 200 -200 200 100 N
-X + 1 0 0 200 R 50 50 0 0 B
-X - 2 0 -100 200 R 50 50 0 0 B
-X ~_1 3 900 -100 200 L 50 50 0 0 B
-X ~_2 4 900 0 200 L 50 50 0 0 B
 ENDDRAW
 ENDDEF
 #
@@ -502,6 +458,50 @@ P 4 0 1 0 130 15 115 -10 145 -10 130 15 N
 X G 1 -200 0 100 R 50 50 1 1 I
 X D 2 100 200 100 D 50 50 1 1 P
 X S 3 100 -200 100 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# ceiling-light-dimmable-rescue_DB107-BP-Diode_Bridge_slimc
+#
+DEF ceiling-light-dimmable-rescue_DB107-BP-Diode_Bridge_slimc BR 0 30 Y Y 1 F N
+F0 "BR" 750 300 50 H V L CNN
+F1 "ceiling-light-dimmable-rescue_DB107-BP-Diode_Bridge_slimc" 750 200 50 H V L CNN
+F2 "DIP825W56P510L828H330Q4N" 750 100 50 H I L CNN
+F3 "http://www.mccsemi.com/up_pdf/DB101-DB107(DB-1).pdf" 750 0 50 H I L CNN
+F4 "Bridge Rectifiers 1.0A 1000V" 750 -100 50 H I L CNN "Description"
+F5 "3.3" 750 -200 50 H I L CNN "Height"
+F6 "Micro Commercial Components (MCC)" 750 -300 50 H I L CNN "Manufacturer_Name"
+F7 "DB107-BP" 750 -400 50 H I L CNN "Manufacturer_Part_Number"
+F8 "833-DB107-BP" 750 -500 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.com/Search/Refine.aspx?Keyword=833-DB107-BP" 750 -600 50 H I L CNN "Mouser Price/Stock"
+DRAW
+P 5 0 1 6 200 100 700 100 700 -200 200 -200 200 100 N
+X + 1 0 0 200 R 50 50 0 0 B
+X - 2 0 -100 200 R 50 50 0 0 B
+X ~_1 3 900 -100 200 L 50 50 0 0 B
+X ~_2 4 900 0 200 L 50 50 0 0 B
+ENDDRAW
+ENDDEF
+#
+# ceiling-light-dimmable-rescue_FL51xxMX-AC_Drivers_slimc
+#
+DEF ceiling-light-dimmable-rescue_FL51xxMX-AC_Drivers_slimc U 0 40 Y Y 1 F N
+F0 "U" 0 400 50 H V C CNN
+F1 "ceiling-light-dimmable-rescue_FL51xxMX-AC_Drivers_slimc" 0 300 50 H V C CNN
+F2 "" -350 400 50 H I C CNN
+F3 "" -350 400 50 H I C CNN
+DRAW
+S -350 250 350 -250 0 1 0 N
+X ZCMon 1 -450 200 100 R 50 50 1 1 I
+X OCSen1 10 450 200 100 L 50 50 1 1 I
+X DIMCN 2 -450 100 100 R 50 50 1 1 I
+X VDD 3 -450 0 100 R 50 50 1 1 W
+X DM 4 -450 -100 100 R 50 50 1 1 I
+X GND 5 -450 -200 100 R 50 50 1 1 W
+X VS 6 450 -200 100 L 50 50 1 1 I
+X LPM 7 450 -100 100 L 50 50 1 1 I
+X OCSen2 8 450 0 100 L 50 50 1 1 I
+X DRVG 9 450 100 100 L 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #

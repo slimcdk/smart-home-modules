@@ -649,12 +649,6 @@ F 3 "~" H 4550 1950 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	4100 1400 4050 1400
-Wire Wire Line
-	3750 1500 4050 1500
-Wire Wire Line
-	3750 1300 4050 1300
-Wire Wire Line
 	2950 900  3400 900 
 Wire Wire Line
 	3400 900  3400 1300
@@ -697,8 +691,6 @@ Wire Wire Line
 Wire Wire Line
 	3550 1600 3800 1600
 Connection ~ 3800 1600
-Wire Wire Line
-	3800 1600 4050 1600
 Wire Wire Line
 	4050 1950 4050 1700
 Wire Wire Line
@@ -918,8 +910,6 @@ Wire Notes Line
 	650  6000 2500 6000
 Text Label 2950 3450 2    50   ~ 0
 LIGHT_SENSE
-Wire Wire Line
-	2450 3450 2550 3450
 NoConn ~ 3200 5200
 Wire Notes Line
 	650  6200 2350 6200
@@ -1169,31 +1159,18 @@ F 3 "~" H 5600 1600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L AC_Drivers_slimc:FL51xxMX U4
+L ceiling-light-dimmable-rescue:FL51xxMX-AC_Drivers_slimc U4
 U 1 1 5D445EC1
-P 4500 1500
-F 0 "U4" H 4500 1925 50  0000 C CNN
-F 1 "FL51xxMX" H 4500 1834 50  0000 C CNN
-F 2 "AC_Drivers_slimc:FL51xxMX" H 4150 1900 50  0001 C CNN
-F 3 "" H 4150 1900 50  0001 C CNN
-	1    4500 1500
+P 4550 1500
+F 0 "U4" H 4550 1925 50  0000 C CNN
+F 1 "FL51xxMX" H 4550 1834 50  0000 C CNN
+F 2 "AC_Drivers_slimc:FL51xxMX" H 4200 1900 50  0001 C CNN
+F 3 "" H 4200 1900 50  0001 C CNN
+	1    4550 1500
 	1    0    0    -1  
 $EndComp
-Connection ~ 4050 1300
-Wire Wire Line
-	4050 1300 4100 1300
-Connection ~ 4050 1400
-Wire Wire Line
-	4050 1400 3750 1400
-Connection ~ 4050 1500
-Wire Wire Line
-	4050 1500 4100 1500
-Connection ~ 4050 1600
-Wire Wire Line
-	4050 1600 4100 1600
-Connection ~ 4050 1700
 $Comp
-L Diode_Bridge_slimc:DB107-BP BR1
+L ceiling-light-dimmable-rescue:DB107-BP-Diode_Bridge_slimc BR1
 U 1 1 5D4584FE
 P 4350 3450
 F 0 "BR1" H 4800 3715 50  0000 C CNN
@@ -1209,7 +1186,14 @@ F 9 "https://www.mouser.com/Search/Refine.aspx?Keyword=833-DB107-BP" H 5100 2850
 	1    4350 3450
 	-1   0    0    -1  
 $EndComp
-Connection ~ 2550 3450
 Wire Wire Line
-	2550 3450 2950 3450
+	2450 3450 2950 3450
+Wire Wire Line
+	3750 1300 4100 1300
+Wire Wire Line
+	3750 1400 4100 1400
+Wire Wire Line
+	3750 1500 4100 1500
+Wire Wire Line
+	3800 1600 4100 1600
 $EndSCHEMATC
