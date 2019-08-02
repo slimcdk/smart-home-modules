@@ -18,7 +18,7 @@
     (comment 1 "Open Source Project")
     (comment 2 github.com/slimcdk/smart-home-modules)
     (comment 3 "Smart Home Modules")
-    (comment 4 "Auther: Christian Skjerning")
+    (comment 4 "Auther: Christian Skjerning | slimc")
   )
 
   (layers
@@ -98,7 +98,7 @@
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "../exports/gerbers"))
+      (outputdirectory "../../exports/dimmable/"))
   )
 
   (net 0 "")

@@ -1,5 +1,5 @@
 (sym_lib_table
   (lib (name Power_Supplies)(type Legacy)(uri ${KIPRJMOD}/libs/KiCAD_Libraries/Schematic/Power_Supplies.lib)(options "")(descr ""))
-  (lib (name AC_Drivers_slimc)(type Legacy)(uri ${KIPRJMOD}/libs/kicad-modules/libraries/AC_Drivers_slimc.lib)(options "")(descr ""))
-  (lib (name Diode_Bridge_slimc)(type Legacy)(uri ${KIPRJMOD}/libs/kicad-modules/libraries/Diode_Bridge_slimc.lib)(options "")(descr ""))
+  (lib (name AC_Drivers_slimc)(type Legacy)(uri ${KIPRJMOD}/libs/kicad-modules/libraries/AC_Drivers.lib)(options "")(descr ""))
+  (lib (name Diode_Bridge_slimc)(type Legacy)(uri ${KIPRJMOD}/libs/kicad-modules/libraries/Diode_Bridge.lib)(options "")(descr ""))
 )
