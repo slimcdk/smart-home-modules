@@ -11,6 +11,7 @@
 _autosave-*
 *.tmp
 *-rescue.lib
+*-rescue.dcm
 *-save.pro
 *-save.kicad_pcb
 
