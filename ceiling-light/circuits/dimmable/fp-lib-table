@@ -1,6 +1,6 @@
 (fp_lib_table
   (lib (name Power_Supply)(type KiCad)(uri ${KIPRJMOD}/libs/KiCAD_Libraries/PCB/Power_Supply.pretty)(options "")(descr ""))
   (lib (name Fuse_Holders_and_Fuses)(type KiCad)(uri ${KIPRJMOD}/libs/Fuse_Holders_and_Fuses.pretty)(options "")(descr ""))
-  (lib (name AC_Drivers)(type KiCad)(uri ${KIPRJMOD}/libs/kicad-modules/footprints/AC_Drivers.pretty)(options "")(descr ""))
-  (lib (name Diode_THT)(type KiCad)(uri ${KIPRJMOD}/libs/kicad-modules/footprints/Diode_THT.pretty)(options "")(descr ""))
+  (lib (name AC_Drivers_slimc)(type KiCad)(uri ${KIPRJMOD}/libs/kicad-modules/footprints/AC_Drivers_slimc.pretty)(options "")(descr ""))
+  (lib (name Diode_THT_slimc)(type KiCad)(uri ${KIPRJMOD}/libs/kicad-modules/footprints/Diode_THT_slimc.pretty)(options "")(descr ""))
 )

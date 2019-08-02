@@ -9,10 +9,10 @@ Title "Dimmable Ceiling Light Controller"
 Date "2019-08-02"
 Rev "v1.1.0"
 Comp "slimc"
-Comment1 ""
+Comment1 "Open Source Project"
 Comment2 "github.com/slimcdk/smart-home-modules"
-Comment3 "Open Source Project"
-Comment4 "Auther: Christian Skjerning"
+Comment3 "Smart Home Modules"
+Comment4 "Auther: Christian Skjerning | slimc"
 $EndDescr
 $Comp
 L Isolator:LTV-817 U1
@@ -617,17 +617,6 @@ Wire Wire Line
 	5100 1300 5100 1150
 Wire Wire Line
 	5100 1150 5150 1150
-$Comp
-L AC_Drivers:FL51xxMX U4
-U 1 1 5D558438
-P 4550 1500
-F 0 "U4" H 4550 1925 50  0000 C CNN
-F 1 "FL51xxMX" H 4550 1834 50  0000 C CNN
-F 2 "AC_Drivers:FL51xxMX" H 4200 1900 50  0001 C CNN
-F 3 "" H 4200 1900 50  0001 C CNN
-	1    4550 1500
-	-1   0    0    -1  
-$EndComp
 Wire Wire Line
 	3050 1400 2950 1400
 Wire Wire Line
@@ -660,11 +649,11 @@ F 3 "~" H 4550 1950 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	4100 1400 3750 1400
+	4100 1400 4050 1400
 Wire Wire Line
-	3750 1500 4100 1500
+	3750 1500 4050 1500
 Wire Wire Line
-	3750 1300 4100 1300
+	3750 1300 4050 1300
 Wire Wire Line
 	2950 900  3400 900 
 Wire Wire Line
@@ -709,7 +698,7 @@ Wire Wire Line
 	3550 1600 3800 1600
 Connection ~ 3800 1600
 Wire Wire Line
-	3800 1600 4100 1600
+	3800 1600 4050 1600
 Wire Wire Line
 	4050 1950 4050 1700
 Wire Wire Line
@@ -930,7 +919,7 @@ Wire Notes Line
 Text Label 2950 3450 2    50   ~ 0
 LIGHT_SENSE
 Wire Wire Line
-	2450 3450 2950 3450
+	2450 3450 2550 3450
 NoConn ~ 3200 5200
 Wire Notes Line
 	650  6200 2350 6200
@@ -1180,20 +1169,47 @@ F 3 "~" H 5600 1600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Diode_Bridge:DB107-BP BR1
-U 1 1 5D45626B
-P 3450 3450
-F 0 "BR1" H 3900 3715 50  0000 C CNN
-F 1 "DB107-BP" H 3900 3624 50  0000 C CNN
-F 2 "Diode_THT:DB107-BP" H 4200 3550 50  0001 L CNN
-F 3 "http://www.mccsemi.com/up_pdf/DB101-DB107(DB-1).pdf" H 4200 3450 50  0001 L CNN
-F 4 "Bridge Rectifiers 1.0A 1000V" H 4200 3350 50  0001 L CNN "Description"
-F 5 "3.3" H 4200 3250 50  0001 L CNN "Height"
-F 6 "Micro Commercial Components (MCC)" H 4200 3150 50  0001 L CNN "Manufacturer_Name"
-F 7 "DB107-BP" H 4200 3050 50  0001 L CNN "Manufacturer_Part_Number"
-F 8 "833-DB107-BP" H 4200 2950 50  0001 L CNN "Mouser Part Number"
-F 9 "https://www.mouser.com/Search/Refine.aspx?Keyword=833-DB107-BP" H 4200 2850 50  0001 L CNN "Mouser Price/Stock"
-	1    3450 3450
+L AC_Drivers_slimc:FL51xxMX U4
+U 1 1 5D445EC1
+P 4500 1500
+F 0 "U4" H 4500 1925 50  0000 C CNN
+F 1 "FL51xxMX" H 4500 1834 50  0000 C CNN
+F 2 "AC_Drivers_slimc:FL51xxMX" H 4150 1900 50  0001 C CNN
+F 3 "" H 4150 1900 50  0001 C CNN
+	1    4500 1500
 	1    0    0    -1  
 $EndComp
+Connection ~ 4050 1300
+Wire Wire Line
+	4050 1300 4100 1300
+Connection ~ 4050 1400
+Wire Wire Line
+	4050 1400 3750 1400
+Connection ~ 4050 1500
+Wire Wire Line
+	4050 1500 4100 1500
+Connection ~ 4050 1600
+Wire Wire Line
+	4050 1600 4100 1600
+Connection ~ 4050 1700
+$Comp
+L Diode_Bridge_slimc:DB107-BP BR1
+U 1 1 5D4584FE
+P 4350 3450
+F 0 "BR1" H 4800 3715 50  0000 C CNN
+F 1 "DB107-BP" H 4800 3624 50  0000 C CNN
+F 2 "Diode_THT_slimc:DB107-BP" H 5100 3550 50  0001 L CNN
+F 3 "http://www.mccsemi.com/up_pdf/DB101-DB107(DB-1).pdf" H 5100 3450 50  0001 L CNN
+F 4 "Bridge Rectifiers 1.0A 1000V" H 5100 3350 50  0001 L CNN "Description"
+F 5 "3.3" H 5100 3250 50  0001 L CNN "Height"
+F 6 "Micro Commercial Components (MCC)" H 5100 3150 50  0001 L CNN "Manufacturer_Name"
+F 7 "DB107-BP" H 5100 3050 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "833-DB107-BP" H 5100 2950 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.com/Search/Refine.aspx?Keyword=833-DB107-BP" H 5100 2850 50  0001 L CNN "Mouser Price/Stock"
+	1    4350 3450
+	-1   0    0    -1  
+$EndComp
+Connection ~ 2550 3450
+Wire Wire Line
+	2550 3450 2950 3450
 $EndSCHEMATC
