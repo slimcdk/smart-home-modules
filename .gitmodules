@@ -1,4 +1,4 @@
-[submodule "ceiling-light-controller/circuits/libs/KiCAD_Libraries"]
+[submodule "include/libs/kicad/KiCAD_Libraries"]
 	path = include/libs/kicad/KiCAD_Libraries
 	url = git@github.com:CascoLogix/KiCAD_Libraries.git
 [submodule "include/libs/kicad/Buttons_Switches_THT.pretty"]
