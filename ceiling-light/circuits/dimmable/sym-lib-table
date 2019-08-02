@@ -1,6 +1,4 @@
 (sym_lib_table
-  (lib (name DB107-BP)(type Legacy)(uri ${KIPRJMOD}/libs/DB107-BP/KiCad/DB107-BP.lib)(options "")(descr ""))
-  (lib (name made-in-china)(type Legacy)(uri ${KIPRJMOD}/libs/slimc/made-in-china.lib)(options "")(descr ""))
-  (lib (name wemos_mini)(type Legacy)(uri ${KIPRJMOD}/libs/wemos-d1-mini-kicad/libraries/wemos_mini.lib)(options "")(descr ""))
-  (lib (name Power_Supplies)(type Legacy)(uri ${KIPRJMOD}/libs/KiCAD_Libraries/Schematic/Power_Supplies.lib)(options "")(descr ""))
+  (lib (name AC_Drivers)(type Legacy)(uri ${KIPRJMOD}/libs/kicad-modules/libraries/AC_Drivers.lib)(options "")(descr ""))
+  (lib (name Diode_Bridge)(type Legacy)(uri ${KIPRJMOD}/libs/kicad-modules/libraries/Diode_Bridge.lib)(options "")(descr ""))
 )

@@ -22,7 +22,7 @@ A [undimmable](circuits/undimmable) and [dimmable](circuits/dimmable) version is
 <h2>Circuit Design</h2>
 <p>Schematic</p>
 
-<img src="exports/ceiling-light.svg">
+<img src="exports/dimmable/ceiling-light-dimmable.svg">
 
 <p>PCB layout</p>
 
@@ -30,25 +30,25 @@ A [undimmable](circuits/undimmable) and [dimmable](circuits/dimmable) version is
   
   <div style="float:left; height: 100%; width:auto;">
     <ul>
-      <li><a href="exports/ceiling-light-Edge.Cuts.svg">Edge Cuts</a></li>
-      <li><a href="exports/ceiling-light-F.SilkS.svg">Silkscreen Top</a></li>
-      <li><a href="exports/ceiling-light-B.SilkS.svg">Silkscreen Bottom</a></li>  
-      <li><a href="exports/ceiling-light-F.Mask.svg">Soldermask Top</a></li>
-      <li><a href="exports/ceiling-light-B.Mask.svg">Soldermask Bottom</a></li>
-      <li><a href="exports/ceiling-light-F.Cu.svg">Copper Top</a></li>
-      <li><a href="exports/ceiling-light-B.Cu.svg">Copper Bottom</a></li>
+      <li><a href="exports/dimmable/ceiling-light-Edge.Cuts.svg">Edge Cuts</a></li>
+      <li><a href="exports/dimmable/ceiling-light-F.SilkS.svg">Silkscreen Top</a></li>
+      <li><a href="exports/dimmable/ceiling-light-B.SilkS.svg">Silkscreen Bottom</a></li>  
+      <li><a href="exports/dimmable/ceiling-light-F.Mask.svg">Soldermask Top</a></li>
+      <li><a href="exports/dimmable/ceiling-light-B.Mask.svg">Soldermask Bottom</a></li>
+      <li><a href="exports/dimmable/ceiling-light-F.Cu.svg">Copper Top</a></li>
+      <li><a href="exports/dimmable/ceiling-light-B.Cu.svg">Copper Bottom</a></li>
     </ul>
   </div>
   
   
   <div style="margin-left:auto; margin-right:auto; height:100%; width:100%;">
-    <img src="exports/ceiling-light-Edge.Cuts.svg" style="position: absolute;">
-    <img src="exports/ceiling-light-F.SilkS.svg" style="position: absolute;">
-    <img src="exports/ceiling-light-B.SilkS.svg" style="position: absolute;">
-    <img src="exports/ceiling-light-F.Mask.svg" style="position: absolute;">
-    <img src="exports/ceiling-light-B.Mask.svg" style="position: absolute;">
-    <img src="exports/ceiling-light-B.Cu.svg" style="position: absolute;">
-    <img src="exports/ceiling-lightr-F.Cu.svg" style="position: absolute;">
+    <img src="exports/dimmable/ceiling-light-Edge.Cuts.svg" style="position: absolute;">
+    <img src="exports/dimmable/ceiling-light-F.SilkS.svg" style="position: absolute;">
+    <img src="exports/dimmable/ceiling-light-B.SilkS.svg" style="position: absolute;">
+    <img src="exports/dimmable/ceiling-light-F.Mask.svg" style="position: absolute;">
+    <img src="exports/dimmable/ceiling-light-B.Mask.svg" style="position: absolute;">
+    <img src="exports/dimmable/ceiling-light-B.Cu.svg" style="position: absolute;">
+    <img src="exports/dimmable/ceiling-lightr-F.Cu.svg" style="position: absolute;">
   </div>
 </div>
 

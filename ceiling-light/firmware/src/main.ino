@@ -124,7 +124,9 @@ void loop() {
 }
 
 
-/* IO INTERACTIONS */
+
+/* IO INTERACTIONS */ 
+
 bool readMainsSwitch() {
 
   // running average

@@ -1,4 +1,4 @@
-update=Fri 14 Jun 2019 04:51:35 AM CEST
+update=Fri 02 Aug 2019 03:21:23 AM CEST
 version=1
 last_client=kicad
 [general]
@@ -34,7 +34,7 @@ LibDir=
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=../exports/
+PlotDirectoryName=../../exports/dimmable/
 SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=Pcbnew

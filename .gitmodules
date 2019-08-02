@@ -1,12 +1,12 @@
 [submodule "ceiling-light-controller/circuits/libs/KiCAD_Libraries"]
 	path = include/libs/kicad/KiCAD_Libraries
 	url = git@github.com:CascoLogix/KiCAD_Libraries.git
-[submodule "ceiling-light-controller/circuits/libs/wemos-d1-mini-kicad"]
-	path = include/libs/kicad/wemos-d1-mini-kicad
-	url = git@github.com:rubienr/wemos-d1-mini-kicad.git
 [submodule "include/libs/kicad/Buttons_Switches_THT.pretty"]
 	path = include/libs/kicad/Buttons_Switches_THT.pretty
 	url = https://github.com/KiCad/Buttons_Switches_THT.pretty.git
 [submodule "include/libs/kicad/Fuse_Holders_and_Fuses.pretty"]
 	path = include/libs/kicad/Fuse_Holders_and_Fuses.pretty
 	url = https://github.com/KiCad/Fuse_Holders_and_Fuses.pretty.git
+[submodule "include/libs/kicad/kicad-modules"]
+	path = include/libs/kicad/kicad-modules
+	url = https://github.com/slimcdk/kicad-modules
