@@ -52,7 +52,7 @@
 	],
 	"settings": {
 		"terminal.integrated.env.linux": {
-			"PATH": "/home/christian/.platformio/penv/bin:/home/christian/.platformio/penv:/home/christian/.local/bin:/home/christian/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+			"PATH": "/home/christian/.platformio/penv/bin:/home/christian/.platformio/penv:/home/christian/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/christian/.dotnet/tools",
 			"PLATFORMIO_CALLER": "vscode"
 		}
 	}
