@@ -2,7 +2,7 @@ EESchema Schematic File Version 4
 LIBS:ceiling-light-dimmable-cache
 EELAYER 26 0
 EELAYER END
-$Descr User 10039 9449
+$Descr User 10039 7874
 encoding utf-8
 Sheet 1 1
 Title "Dimmable Ceiling Light Controller"
@@ -28,12 +28,12 @@ $EndComp
 $Comp
 L Device:R R2
 U 1 1 5CD372F6
-P 5550 3250
-F 0 "R2" H 5480 3204 50  0000 R CNN
-F 1 "10K" H 5480 3295 50  0000 R CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 5480 3250 50  0001 C CNN
-F 3 "~" H 5550 3250 50  0001 C CNN
-	1    5550 3250
+P 5400 3250
+F 0 "R2" H 5330 3204 50  0000 R CNN
+F 1 "10K" H 5330 3295 50  0000 R CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 5330 3250 50  0001 C CNN
+F 3 "~" H 5400 3250 50  0001 C CNN
+	1    5400 3250
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -48,25 +48,14 @@ F 3 "~" H 4550 3450 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:CP C1
-U 1 1 5CD3CE67
-P 5550 3650
-F 0 "C1" H 5668 3696 50  0000 L CNN
-F 1 "1µF" H 5668 3605 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D4.0mm_P1.50mm" H 5588 3500 50  0001 C CNN
-F 3 "~" H 5550 3650 50  0001 C CNN
-	1    5550 3650
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR0107
 U 1 1 5CD4B035
-P 5550 3900
-F 0 "#PWR0107" H 5550 3650 50  0001 C CNN
-F 1 "GND" H 5555 3727 50  0000 C CNN
-F 2 "" H 5550 3900 50  0001 C CNN
-F 3 "" H 5550 3900 50  0001 C CNN
-	1    5550 3900
+P 5400 3900
+F 0 "#PWR0107" H 5400 3650 50  0001 C CNN
+F 1 "GND" H 5405 3727 50  0000 C CNN
+F 2 "" H 5400 3900 50  0001 C CNN
+F 3 "" H 5400 3900 50  0001 C CNN
+	1    5400 3900
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -183,8 +172,6 @@ MAINS INPUT
 Wire Wire Line
 	1700 2500 1800 2500
 Wire Wire Line
-	1800 2500 1800 2400
-Wire Wire Line
 	1700 2600 1800 2600
 Wire Wire Line
 	1800 2600 1800 2700
@@ -193,25 +180,12 @@ Text Notes 650  2100 0    50   ~ 0
 Text Notes 3100 2700 0    50   ~ 0
 MAINS POWER SENSE
 Wire Wire Line
-	5550 3900 5550 3850
+	5400 3100 5400 3000
 Wire Wire Line
-	5550 3500 5550 3450
+	5350 3450 5400 3450
+Connection ~ 5400 3450
 Wire Wire Line
-	5550 3100 5550 3000
-Wire Wire Line
-	5350 3450 5550 3450
-Connection ~ 5550 3450
-Wire Wire Line
-	5550 3450 5550 3400
-Wire Wire Line
-	5350 3650 5400 3650
-Wire Wire Line
-	5400 3650 5400 3850
-Wire Wire Line
-	5400 3850 5550 3850
-Connection ~ 5550 3850
-Wire Wire Line
-	5550 3850 5550 3800
+	5400 3450 5400 3400
 Wire Wire Line
 	4350 3550 4550 3550
 Wire Wire Line
@@ -249,7 +223,7 @@ Wire Wire Line
 Wire Wire Line
 	3200 3550 3450 3550
 Wire Wire Line
-	5550 3450 6150 3450
+	5400 3450 6150 3450
 Text Notes 2250 2700 0    50   ~ 0
 LIGHT SENSER
 Text Notes 2650 4400 0    50   ~ 0
@@ -302,12 +276,12 @@ Wire Notes Line
 $Comp
 L power:+3V3 #PWR0103
 U 1 1 5D020BD5
-P 5550 3000
-F 0 "#PWR0103" H 5550 2850 50  0001 C CNN
-F 1 "+3V3" H 5565 3173 50  0000 C CNN
-F 2 "" H 5550 3000 50  0001 C CNN
-F 3 "" H 5550 3000 50  0001 C CNN
-	1    5550 3000
+P 5400 3000
+F 0 "#PWR0103" H 5400 2850 50  0001 C CNN
+F 1 "+3V3" H 5415 3173 50  0000 C CNN
+F 2 "" H 5400 3000 50  0001 C CNN
+F 3 "" H 5400 3000 50  0001 C CNN
+	1    5400 3000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -399,8 +373,8 @@ $Comp
 L Transistor_BJT:2N2219 Q4
 U 1 1 5D3B2EAE
 P 3800 2100
-F 0 "Q4" V 3650 1950 50  0000 C CNN
-F 1 "KSP44" V 3750 1850 50  0000 C CNN
+F 0 "Q4" V 4000 2100 50  0000 C CNN
+F 1 "KSP44" V 4100 2100 50  0000 C CNN
 F 2 "Package_TO_SOT_THT:TO-39-3" H 4000 2025 50  0001 L CIN
 F 3 "http://www.onsemi.com/pub_link/Collateral/2N2219-D.PDF" H 3800 2100 50  0001 L CNN
 	1    3800 2100
@@ -692,10 +666,6 @@ Wire Wire Line
 	3550 1600 3800 1600
 Connection ~ 3800 1600
 Wire Wire Line
-	4050 1950 4050 1700
-Wire Wire Line
-	4050 1700 4100 1700
-Wire Wire Line
 	3400 2200 3600 2200
 Wire Wire Line
 	3100 2200 3050 2200
@@ -708,7 +678,6 @@ Wire Wire Line
 	4000 2200 4050 2200
 Wire Wire Line
 	4050 2200 4050 1950
-Connection ~ 4050 1950
 Text Label 2400 2100 0    50   ~ 0
 N_MAIN
 Text Label 800  2500 0    50   ~ 0
@@ -786,8 +755,8 @@ $Comp
 L RF_Module:ESP32-WROOM-32D U6
 U 1 1 5D7BBAC1
 P 7850 2600
-F 0 "U6" H 6850 4350 50  0000 C CNN
-F 1 "ESP32-WROOM-32D" H 7200 4250 50  0000 C CNN
+F 0 "U6" H 6750 4450 50  0000 C CNN
+F 1 "ESP32-WROOM-32D" H 6800 4350 50  0000 C CNN
 F 2 "RF_Module:ESP32-WROOM-32" H 7850 1100 50  0001 C CNN
 F 3 "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.pdf" H 7550 2650 50  0001 C CNN
 	1    7850 2600
@@ -820,21 +789,19 @@ Wire Wire Line
 Connection ~ 3500 5550
 Wire Wire Line
 	3500 5550 3500 5500
-Text Notes 6450 700  0    50   ~ 0
-RGB LED STATUS
+Text Notes 6400 700  0    50   ~ 0
+ESP32-WROOM-32D MCU
 $Comp
 L power:+3V3 #PWR010
 U 1 1 5D84AC1B
-P 7850 1150
-F 0 "#PWR010" H 7850 1000 50  0001 C CNN
-F 1 "+3V3" H 7865 1323 50  0000 C CNN
-F 2 "" H 7850 1150 50  0001 C CNN
-F 3 "" H 7850 1150 50  0001 C CNN
-	1    7850 1150
+P 7850 1100
+F 0 "#PWR010" H 7850 950 50  0001 C CNN
+F 1 "+3V3" H 7865 1273 50  0000 C CNN
+F 2 "" H 7850 1100 50  0001 C CNN
+F 3 "" H 7850 1100 50  0001 C CNN
+	1    7850 1100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7850 1200 7850 1150
 $Comp
 L power:GND #PWR011
 U 1 1 5D84FE2D
@@ -887,7 +854,7 @@ Wire Wire Line
 Wire Notes Line
 	2650 4400 2650 6000
 Text Label 6150 3450 2    50   ~ 0
-MAINS_SENSE
+SW_SENSE
 Text Label 4300 5200 2    50   ~ 0
 STATUS_LED
 Wire Wire Line
@@ -911,169 +878,91 @@ Wire Notes Line
 Text Label 2950 3450 2    50   ~ 0
 LIGHT_SENSE
 NoConn ~ 3200 5200
-Wire Notes Line
-	650  6200 2350 6200
-Wire Notes Line
-	2350 6200 2350 7800
-Wire Notes Line
-	2350 7800 650  7800
-Wire Notes Line
-	650  7800 650  6200
-Text Notes 650  6200 0    50   ~ 0
-DIM CONTROL DAC
-$Comp
-L Switch:SW_Push SW3
-U 1 1 5DA7D17C
-P 8750 1400
-F 0 "SW3" H 8750 1800 50  0000 C CNN
-F 1 "SW_Push" H 8750 1700 50  0000 C CNN
-F 2 "Button_Switch_SMD:SW_SPST_B3S-1000" H 8750 1600 50  0001 C CNN
-F 3 "" H 8750 1600 50  0001 C CNN
-	1    8750 1400
-	1    0    0    -1  
-$EndComp
 $Comp
 L Switch:SW_Push SW2
 U 1 1 5DA7D7F2
-P 6950 1400
-F 0 "SW2" H 6950 1685 50  0000 C CNN
-F 1 "SW_Push" H 6950 1594 50  0000 C CNN
-F 2 "Button_Switch_SMD:SW_SPST_B3S-1000" H 6950 1600 50  0001 C CNN
-F 3 "" H 6950 1600 50  0001 C CNN
-	1    6950 1400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8450 1400 8500 1400
-Wire Wire Line
-	7150 1400 7250 1400
-$Comp
-L power:GND #PWR012
-U 1 1 5DAA7C09
-P 9200 1500
-F 0 "#PWR012" H 9200 1250 50  0001 C CNN
-F 1 "GND" H 9205 1327 50  0000 C CNN
-F 2 "" H 9200 1500 50  0001 C CNN
-F 3 "" H 9200 1500 50  0001 C CNN
-	1    9200 1500
+P 6700 1400
+F 0 "SW2" H 6650 1700 50  0000 C CNN
+F 1 "SW_Push" H 6650 1600 50  0000 C CNN
+F 2 "Button_Switch_SMD:SW_SPST_B3S-1000" H 6700 1600 50  0001 C CNN
+F 3 "" H 6700 1600 50  0001 C CNN
+	1    6700 1400
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR09
 U 1 1 5DAA7D09
-P 6550 1500
-F 0 "#PWR09" H 6550 1250 50  0001 C CNN
-F 1 "GND" H 6555 1327 50  0000 C CNN
-F 2 "" H 6550 1500 50  0001 C CNN
-F 3 "" H 6550 1500 50  0001 C CNN
-	1    6550 1500
+P 6500 1500
+F 0 "#PWR09" H 6500 1250 50  0001 C CNN
+F 1 "GND" H 6505 1327 50  0000 C CNN
+F 2 "" H 6500 1500 50  0001 C CNN
+F 3 "" H 6500 1500 50  0001 C CNN
+	1    6500 1500
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6550 1500 6550 1400
+	6500 1500 6500 1400
+Text Label 9000 1500 2    50   ~ 0
+ESP_TXD0
+Text Label 9000 1700 2    50   ~ 0
+ESP_RXD0
 Wire Wire Line
-	6550 1400 6750 1400
+	8450 1700 9000 1700
 Wire Wire Line
-	9200 1400 9200 1500
-Wire Wire Line
-	8950 1400 9200 1400
-Text Label 8850 1500 2    50   ~ 0
-ESP_TX
-Text Label 8850 1700 2    50   ~ 0
-ESP_RX
-Wire Wire Line
-	8450 1700 8850 1700
-Wire Wire Line
-	8850 1500 8450 1500
-Text Notes 5100 5050 2    39   ~ 0
-FTDI/PWR 3V3
-Text Notes 5100 5150 2    39   ~ 0
-FTDI RST
-Text Notes 5100 5250 2    39   ~ 0
-FTDI TXD
-Text Notes 5100 5350 2    39   ~ 0
-FTDI RXD
-Text Notes 5100 5450 2    39   ~ 0
-FTDI GND
-Text Notes 5100 5550 2    39   ~ 0
-FTDI 5V\n
+	9000 1500 8450 1500
+Text Notes 5050 5300 2    20   ~ 0
+3V3 PWR
+Text Notes 5050 5000 2    20   ~ 0
+FTDI RTS -> ESP EN
+Text Notes 5050 5100 2    20   ~ 0
+FTDI TXD -> ESP RXD
+Text Notes 5050 5200 2    20   ~ 0
+FTDI RXD -> ESP TXD
+Text Notes 5050 5600 2    20   ~ 0
+GND
+Text Notes 5050 5400 2    20   ~ 0
+5V PWR
 Text Notes 4550 4400 0    50   ~ 0
-FTDI PROGRAMMING HEADER
-$Comp
-L Connector_Generic:Conn_01x07 J3
-U 1 1 5DAD677B
-P 5250 5250
-F 0 "J3" H 5500 4700 50  0000 C CNN
-F 1 "Conn_01x07" H 5400 4800 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical" H 5250 5250 50  0001 C CNN
-F 3 "~" H 5250 5250 50  0001 C CNN
-	1    5250 5250
-	-1   0    0    1   
-$EndComp
-Text Notes 5100 4950 2    39   ~ 0
-FTDI/PWR GND
+PROGRAMMING HEADER
+Text Notes 5050 5500 2    20   ~ 0
+GND
 $Comp
 L power:GND #PWR013
 U 1 1 5DAF03AE
-P 5500 5650
-F 0 "#PWR013" H 5500 5400 50  0001 C CNN
-F 1 "GND" H 5505 5477 50  0000 C CNN
-F 2 "" H 5500 5650 50  0001 C CNN
-F 3 "" H 5500 5650 50  0001 C CNN
-	1    5500 5650
+P 5450 5750
+F 0 "#PWR013" H 5450 5500 50  0001 C CNN
+F 1 "GND" H 5455 5577 50  0000 C CNN
+F 2 "" H 5450 5750 50  0001 C CNN
+F 3 "" H 5450 5750 50  0001 C CNN
+	1    5450 5750
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5450 4950 5500 4950
-Wire Wire Line
-	5500 4950 5500 5450
-Wire Wire Line
-	5450 5450 5500 5450
-Connection ~ 5500 5450
-Wire Wire Line
-	5500 5450 5500 5650
 $Comp
 L power:+5V #PWR015
 U 1 1 5DAFAB78
-P 5650 4850
-F 0 "#PWR015" H 5650 4700 50  0001 C CNN
-F 1 "+5V" H 5700 5000 50  0000 C CNN
-F 2 "" H 5650 4850 50  0001 C CNN
-F 3 "" H 5650 4850 50  0001 C CNN
-	1    5650 4850
+P 6050 4800
+F 0 "#PWR015" H 6050 4650 50  0001 C CNN
+F 1 "+5V" H 6100 4950 50  0000 C CNN
+F 2 "" H 6050 4800 50  0001 C CNN
+F 3 "" H 6050 4800 50  0001 C CNN
+	1    6050 4800
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR014
 U 1 1 5DAFAC0D
-P 5550 4850
-F 0 "#PWR014" H 5550 4700 50  0001 C CNN
-F 1 "+3V3" H 5450 5000 50  0000 C CNN
-F 2 "" H 5550 4850 50  0001 C CNN
-F 3 "" H 5550 4850 50  0001 C CNN
-	1    5550 4850
+P 5950 4800
+F 0 "#PWR014" H 5950 4650 50  0001 C CNN
+F 1 "+3V3" H 5900 4950 50  0000 C CNN
+F 2 "" H 5950 4800 50  0001 C CNN
+F 3 "" H 5950 4800 50  0001 C CNN
+	1    5950 4800
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5450 5050 5550 5050
-Wire Wire Line
-	5550 5050 5550 4850
-Wire Wire Line
-	5450 5550 5650 5550
-Wire Wire Line
-	5650 5550 5650 4850
-Text Label 6150 5350 2    50   ~ 0
-ESP_TX
-Text Label 6150 5250 2    50   ~ 0
-ESP_RX
-Text Label 6150 5150 2    50   ~ 0
-ESP_FLASH
-Wire Wire Line
-	5450 5150 6150 5150
-Wire Wire Line
-	6150 5250 5450 5250
-Wire Wire Line
-	5450 5350 6150 5350
+Text Label 5850 5200 2    50   ~ 0
+ESP_TXD0
+Text Label 5850 5100 2    50   ~ 0
+ESP_RXD0
 Wire Notes Line
 	6250 4400 6250 6000
 Wire Notes Line
@@ -1082,15 +971,8 @@ Wire Notes Line
 	4550 4400 6250 4400
 Wire Notes Line
 	4550 4400 4550 6000
-Wire Wire Line
-	8500 1400 8500 1250
-Wire Wire Line
-	8500 1250 9200 1250
-Connection ~ 8500 1400
-Wire Wire Line
-	8500 1400 8550 1400
-Text Label 9200 1250 2    50   ~ 0
-ESP_FLASH
+Text Label 9000 1400 2    50   ~ 0
+ESP_GPIO0
 Wire Notes Line
 	6400 4400 9350 4400
 Wire Notes Line
@@ -1101,8 +983,8 @@ $Comp
 L Switch:SW_Push SW1
 U 1 1 5DBBE658
 P 8750 3400
-F 0 "SW1" H 8750 3700 50  0000 C CNN
-F 1 "SW_Push" H 8750 3600 50  0000 C CNN
+F 0 "SW1" H 9000 3600 50  0000 C CNN
+F 1 "SW_Push" H 9000 3500 50  0000 C CNN
 F 2 "Button_Switch_THT:SW_PUSH_6mm" H 8750 3600 50  0001 C CNN
 F 3 "" H 8750 3600 50  0001 C CNN
 	1    8750 3400
@@ -1124,42 +1006,18 @@ Wire Wire Line
 Text Label 9000 3500 2    50   ~ 0
 STATUS_LED
 Text Label 9000 3600 2    50   ~ 0
-MAINS_SENSE
+SW_SENSE
 Wire Wire Line
 	8450 3600 9000 3600
 Wire Wire Line
 	8450 3400 8550 3400
 Wire Wire Line
 	8950 3400 9150 3400
-Wire Wire Line
-	9150 3400 9150 3650
 Wire Notes Line
 	6400 700  6400 4400
-$Comp
-L Connector_Generic:Conn_01x01 J4
-U 1 1 5DBFC2AC
-P 5600 1400
-F 0 "J4" V 5473 1480 50  0000 L CNN
-F 1 "Conn_01x01" H 5564 1480 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical" H 5600 1400 50  0001 C CNN
-F 3 "~" H 5600 1400 50  0001 C CNN
-	1    5600 1400
-	1    0    0    -1  
-$EndComp
 Connection ~ 5050 1700
 $Comp
-L Connector_Generic:Conn_01x01 J5
-U 1 1 5DC18BC0
-P 5600 1600
-F 0 "J5" V 5473 1680 50  0000 L CNN
-F 1 "Conn_01x01" H 5564 1680 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical" H 5600 1600 50  0001 C CNN
-F 3 "~" H 5600 1600 50  0001 C CNN
-	1    5600 1600
-	1    0    0    -1  
-$EndComp
-$Comp
-L ceiling-light-dimmable-rescue:FL51xxMX-AC_Drivers_slimc U4
+L ceiling-light-dimmable-rescue:FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue U4
 U 1 1 5D445EC1
 P 4550 1500
 F 0 "U4" H 4550 1925 50  0000 C CNN
@@ -1167,10 +1025,10 @@ F 1 "FL51xxMX" H 4550 1834 50  0000 C CNN
 F 2 "AC_Drivers_slimc:FL51xxMX" H 4200 1900 50  0001 C CNN
 F 3 "" H 4200 1900 50  0001 C CNN
 	1    4550 1500
-	1    0    0    -1  
+	-1   0    0    -1  
 $EndComp
 $Comp
-L ceiling-light-dimmable-rescue:DB107-BP-Diode_Bridge_slimc BR1
+L ceiling-light-dimmable-rescue:DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue BR1
 U 1 1 5D4584FE
 P 4350 3450
 F 0 "BR1" H 4800 3715 50  0000 C CNN
@@ -1193,7 +1051,97 @@ Wire Wire Line
 Wire Wire Line
 	3750 1400 4100 1400
 Wire Wire Line
+	3800 1600 4100 1600
+NoConn ~ 7250 2600
+NoConn ~ 7250 2700
+NoConn ~ 7250 2800
+NoConn ~ 7250 2900
+NoConn ~ 7250 3000
+NoConn ~ 7250 3100
+NoConn ~ 8450 3300
+NoConn ~ 8450 3200
+NoConn ~ 8450 3000
+NoConn ~ 8450 2900
+NoConn ~ 8450 2800
+NoConn ~ 8450 2700
+NoConn ~ 8450 2600
+NoConn ~ 8450 2500
+NoConn ~ 8450 2400
+NoConn ~ 8450 2300
+NoConn ~ 8450 2200
+NoConn ~ 8450 2100
+NoConn ~ 8450 2000
+NoConn ~ 8450 1600
+NoConn ~ 8450 1800
+NoConn ~ 8450 1900
+NoConn ~ 8450 3700
+Wire Wire Line
 	3750 1500 4100 1500
 Wire Wire Line
-	3800 1600 4100 1600
+	4100 1700 4050 1700
+Wire Wire Line
+	4050 1700 4050 1950
+Connection ~ 4050 1950
+Wire Wire Line
+	9150 3650 9150 3400
+Wire Wire Line
+	1800 2500 1800 2400
+Text Label 9000 3100 2    50   ~ 0
+DIMCN
+Wire Wire Line
+	9000 3100 8450 3100
+Wire Wire Line
+	8450 1400 9000 1400
+$Comp
+L Connector_Generic:Conn_01x08 J3
+U 1 1 5D4F5061
+P 5200 5300
+F 0 "J3" H 5350 4650 50  0000 C CNN
+F 1 "Conn_01x08" H 5350 4750 50  0000 C CNN
+F 2 "" H 5200 5300 50  0001 C CNN
+F 3 "~" H 5200 5300 50  0001 C CNN
+	1    5200 5300
+	-1   0    0    1   
+$EndComp
+Text Notes 5050 4900 2    20   ~ 0
+FTDI DTR -> ESP GPIO0
+Wire Wire Line
+	7850 1100 7850 1200
+Text Label 7200 1400 2    50   ~ 0
+ESP_EN
+Wire Wire Line
+	6900 1400 7250 1400
+Text Label 5850 5000 2    50   ~ 0
+ESP_EN
+Text Label 5850 4900 2    50   ~ 0
+ESP_GPIO0
+Wire Wire Line
+	5400 4900 5850 4900
+Wire Wire Line
+	5400 5000 5850 5000
+Wire Wire Line
+	5400 5100 5850 5100
+Wire Wire Line
+	5400 5200 5850 5200
+Wire Wire Line
+	5950 4800 5950 5300
+Wire Wire Line
+	5950 5300 5400 5300
+Wire Wire Line
+	5400 5400 6050 5400
+Wire Wire Line
+	6050 5400 6050 4800
+Wire Wire Line
+	5400 5500 5450 5500
+Wire Wire Line
+	5450 5500 5450 5600
+Wire Wire Line
+	5400 5600 5450 5600
+Connection ~ 5450 5600
+Wire Wire Line
+	5450 5600 5450 5750
+Wire Wire Line
+	5400 3650 5350 3650
+Wire Wire Line
+	5400 3650 5400 3900
 $EndSCHEMATC
