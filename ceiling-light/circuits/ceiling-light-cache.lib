@@ -446,11 +446,11 @@ X S 3 100 -200 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# ceiling-light-dimmable-rescue_DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue
+# ceiling-light-rescue_DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue
 #
-DEF ceiling-light-dimmable-rescue_DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue BR 0 30 Y Y 1 F N
+DEF ceiling-light-rescue_DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue BR 0 30 Y Y 1 F N
 F0 "BR" 750 300 50 H V L CNN
-F1 "ceiling-light-dimmable-rescue_DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue" 750 200 50 H V L CNN
+F1 "ceiling-light-rescue_DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue" 750 200 50 H V L CNN
 F2 "DIP825W56P510L828H330Q4N" 750 100 50 H I L CNN
 F3 "http://www.mccsemi.com/up_pdf/DB101-DB107(DB-1).pdf" 750 0 50 H I L CNN
 F4 "Bridge Rectifiers 1.0A 1000V" 750 -100 50 H I L CNN "Description"
@@ -468,11 +468,11 @@ X ~_2 4 900 0 200 L 50 50 0 0 B
 ENDDRAW
 ENDDEF
 #
-# ceiling-light-dimmable-rescue_FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue
+# ceiling-light-rescue_FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue
 #
-DEF ceiling-light-dimmable-rescue_FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue U 0 40 Y Y 1 F N
+DEF ceiling-light-rescue_FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue U 0 40 Y Y 1 F N
 F0 "U" 0 400 50 H V C CNN
-F1 "ceiling-light-dimmable-rescue_FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue" 0 300 50 H V C CNN
+F1 "ceiling-light-rescue_FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue" 0 300 50 H V C CNN
 F2 "" -350 400 50 H I C CNN
 F3 "" -350 400 50 H I C CNN
 DRAW

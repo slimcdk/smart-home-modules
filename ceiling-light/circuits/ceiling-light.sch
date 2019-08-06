@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:ceiling-light-dimmable-cache
+LIBS:ceiling-light-cache
 EELAYER 26 0
 EELAYER END
 $Descr User 10039 7874
@@ -897,7 +897,7 @@ Wire Wire Line
 Wire Notes Line
 	6400 700  6400 4400
 $Comp
-L ceiling-light-dimmable-rescue:FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue U4
+L ceiling-light-rescue:FL51xxMX-AC_Drivers_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue U4
 U 1 1 5D445EC1
 P 4600 1500
 F 0 "U4" H 4600 1925 50  0000 C CNN
@@ -908,7 +908,7 @@ F 3 "" H 4250 1900 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L ceiling-light-dimmable-rescue:DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue BR1
+L ceiling-light-rescue:DB107-BP-Diode_Bridge_slimc-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue-ceiling-light-dimmable-rescue BR1
 U 1 1 5D4584FE
 P 4400 3450
 F 0 "BR1" H 4850 3715 50  0000 C CNN
