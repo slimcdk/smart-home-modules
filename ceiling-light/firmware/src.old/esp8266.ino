@@ -5,7 +5,7 @@
 */
 
 
-#include "conf.h"
+#include "esp8266_conf.h"
 
 
 void setup() {
