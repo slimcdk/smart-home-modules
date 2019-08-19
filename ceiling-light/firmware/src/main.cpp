@@ -28,13 +28,14 @@ uint8_t readLightLevel () {
   return map(_raw_value, _light_level_min, _light_level_max, 0, 100);
 }
 
+
 void setOutputDim(uint8_t dim_level) {
+  //uint8_t _dim_level = constrain( 0.1 * pow(dim_level, 1.72), 0, 255);
   
-  uint8_t _dim_level = constrain( 0.1 * pow(dim_level, 1.72), 0, 255);
+  uint8_t _dim_level = constrain(dim_level, 0, 255);
+  
   dacWrite(DIM_CONTROL_PIN, _dim_level);
-
-
-  Serial.println(_dim_level);  
+  Serial.println(_dim_level);
 }
 
 
@@ -50,7 +51,5 @@ void setup() {
 void loop() {
   digitalWrite(DIM_MODE_PIN, LOW);
   
-  setOutputDim(100);
-  
-
+  setOutputDim(195);
 }
