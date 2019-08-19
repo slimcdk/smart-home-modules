@@ -10,3 +10,6 @@
 [submodule "include/libs/kicad/kicad-modules"]
 	path = include/libs/kicad/kicad-modules
 	url = https://github.com/slimcdk/kicad-modules
+[submodule "include/libs/kicad/ESP8266-Template-for-ESProg"]
+	path = include/libs/kicad/ESP8266-Template-for-ESProg
+	url = https://github.com/hamityanik/ESP8266-Template-for-ESProg.git
