@@ -52,7 +52,7 @@ Requires constant power and sensing line (main switch) to function as intended.
 </div>
 
 
-<hr>
+<!--hr>
 
 <h2> BOM (Bill of Materials) </h2>
 <table style="text-align:left">
@@ -80,4 +80,4 @@ Requires constant power and sensing line (main switch) to function as intended.
   <tr><td>16</td> <td>1</td>        <td>1/2W 330 Ohms resistor</td>   <td></td>               <td></td>      </tr>
   <tr><td>17</td> <td>1</td>        <td>1/2W 100nf Ceramic 
                                           capacitor</td>              <td></td>               <td></td>      </tr>
-</table>
+</table-->
