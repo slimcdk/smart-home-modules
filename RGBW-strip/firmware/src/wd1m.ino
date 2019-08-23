@@ -21,11 +21,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
         const size_t _capacity = JSON_OBJECT_SIZE(1);
         DynamicJsonDocument doc(_capacity);
         deserializeJson(doc, payload);
-
-
-        doc["power"] 
-
-
     }
 }
 
@@ -104,7 +99,7 @@ void setup() {
 
   });
   ArduinoOTA.begin();
- */
+*/
 
   MAC_ADDRESS = ( "ESP" + String( ESP.getChipId()) ).c_str();
   DEVICE_AP   = ( DEVICE_TYPE + ":" + MAC_ADDRESS + "-AP" ).c_str();
