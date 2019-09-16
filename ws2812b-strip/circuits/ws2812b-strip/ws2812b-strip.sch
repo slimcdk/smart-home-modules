@@ -1,0 +1,320 @@
+EESchema Schematic File Version 4
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L RF_Module:ESP-12E U1
+U 1 1 5D6E9020
+P 5250 3200
+F 0 "U1" H 5250 4178 50  0000 C CNN
+F 1 "ESP-12E" H 5250 4087 50  0000 C CNN
+F 2 "RF_Module:ESP-12E" H 5250 3200 50  0001 C CNN
+F 3 "http://wiki.ai-thinker.com/_media/esp8266/esp8266_series_modules_user_manual_v1.1.pdf" H 4900 3300 50  0001 C CNN
+	1    5250 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C2
+U 1 1 5D6E9BB3
+P 2600 1600
+F 0 "C2" H 2692 1646 50  0000 L CNN
+F 1 "22µF" H 2692 1555 50  0000 L CNN
+F 2 "" H 2600 1600 50  0001 C CNN
+F 3 "~" H 2600 1600 50  0001 C CNN
+	1    2600 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0101
+U 1 1 5D6E9CB9
+P 2800 1100
+F 0 "#PWR0101" H 2800 950 50  0001 C CNN
+F 1 "+5V" H 2815 1273 50  0000 C CNN
+F 2 "" H 2800 1100 50  0001 C CNN
+F 3 "" H 2800 1100 50  0001 C CNN
+	1    2800 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 1100 2800 1350
+Wire Wire Line
+	2800 1350 2900 1350
+$Comp
+L power:+3V3 #PWR0102
+U 1 1 5D6E9D44
+P 3600 1100
+F 0 "#PWR0102" H 3600 950 50  0001 C CNN
+F 1 "+3V3" H 3615 1273 50  0000 C CNN
+F 2 "" H 3600 1100 50  0001 C CNN
+F 3 "" H 3600 1100 50  0001 C CNN
+	1    3600 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 1350 3600 1350
+Wire Wire Line
+	3600 1350 3600 1100
+$Comp
+L power:GND #PWR0103
+U 1 1 5D6E9DCA
+P 3200 1950
+F 0 "#PWR0103" H 3200 1700 50  0001 C CNN
+F 1 "GND" H 3205 1777 50  0000 C CNN
+F 2 "" H 3200 1950 50  0001 C CNN
+F 3 "" H 3200 1950 50  0001 C CNN
+	1    3200 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3200 1950 3200 1800
+$Comp
+L Connector:Screw_Terminal_01x02 J1
+U 1 1 5D6E9FF3
+P 1700 1450
+F 0 "J1" H 1620 1125 50  0000 C CNN
+F 1 "Screw_Terminal_01x02" H 1620 1216 50  0000 C CNN
+F 2 "" H 1700 1450 50  0001 C CNN
+F 3 "~" H 1700 1450 50  0001 C CNN
+	1    1700 1450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1900 1350 2200 1350
+Connection ~ 2800 1350
+Wire Wire Line
+	2800 1350 2800 1500
+Wire Wire Line
+	2800 1700 2800 1800
+Wire Wire Line
+	2800 1800 3200 1800
+Connection ~ 3200 1800
+Wire Wire Line
+	3200 1800 3200 1650
+Wire Wire Line
+	3200 1800 3600 1800
+Wire Wire Line
+	3600 1800 3600 1700
+Wire Wire Line
+	3600 1500 3600 1350
+Connection ~ 3600 1350
+$Comp
+L power:GND #PWR0104
+U 1 1 5D6EAA74
+P 2050 1600
+F 0 "#PWR0104" H 2050 1350 50  0001 C CNN
+F 1 "GND" H 2055 1427 50  0000 C CNN
+F 2 "" H 2050 1600 50  0001 C CNN
+F 3 "" H 2050 1600 50  0001 C CNN
+	1    2050 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 1450 2050 1450
+Wire Wire Line
+	2050 1450 2050 1600
+Wire Wire Line
+	3600 1350 3800 1350
+Wire Wire Line
+	5250 1350 5250 2400
+$Comp
+L power:GND #PWR0105
+U 1 1 5D6EB3DC
+P 5250 4100
+F 0 "#PWR0105" H 5250 3850 50  0001 C CNN
+F 1 "GND" H 5255 3927 50  0000 C CNN
+F 2 "" H 5250 4100 50  0001 C CNN
+F 3 "" H 5250 4100 50  0001 C CNN
+	1    5250 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 4100 5250 3900
+$Comp
+L Connector:Conn_01x06_Female J3
+U 1 1 5D6ED191
+P 6700 1550
+F 0 "J3" H 6727 1526 50  0000 L CNN
+F 1 "Conn_01x06_Female" H 6727 1435 50  0000 L CNN
+F 2 "" H 6700 1550 50  0001 C CNN
+F 3 "~" H 6700 1550 50  0001 C CNN
+	1    6700 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 1350 6500 1350
+Connection ~ 5250 1350
+$Comp
+L power:GND #PWR0106
+U 1 1 5D6EE0AA
+P 6400 2000
+F 0 "#PWR0106" H 6400 1750 50  0001 C CNN
+F 1 "GND" H 6405 1827 50  0000 C CNN
+F 2 "" H 6400 2000 50  0001 C CNN
+F 3 "" H 6400 2000 50  0001 C CNN
+	1    6400 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6500 1450 6400 1450
+Wire Wire Line
+	6400 1450 6400 2000
+Wire Wire Line
+	6500 1850 6250 1850
+Wire Wire Line
+	6250 1850 6250 2900
+Wire Wire Line
+	6250 2900 5850 2900
+Wire Wire Line
+	5850 2700 6150 2700
+Wire Wire Line
+	6150 2700 6150 1750
+Wire Wire Line
+	6150 1750 6500 1750
+Wire Wire Line
+	5850 2600 6050 2600
+Wire Wire Line
+	6050 2600 6050 1650
+Wire Wire Line
+	6050 1650 6500 1650
+Wire Wire Line
+	6500 1550 4550 1550
+Wire Wire Line
+	4550 1550 4550 2600
+Wire Wire Line
+	4550 2600 4650 2600
+$Comp
+L Connector_Generic:Conn_01x03 J2
+U 1 1 5D6EF2F0
+P 1700 2350
+F 0 "J2" H 1620 2025 50  0000 C CNN
+F 1 "Conn_01x03" H 1620 2116 50  0000 C CNN
+F 2 "" H 1700 2350 50  0001 C CNN
+F 3 "~" H 1700 2350 50  0001 C CNN
+	1    1700 2350
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2200 1350 2200 2250
+Wire Wire Line
+	2200 2250 1900 2250
+Connection ~ 2200 1350
+Wire Wire Line
+	2200 1350 2600 1350
+$Comp
+L power:GND #PWR0107
+U 1 1 5D6EFE18
+P 2050 2850
+F 0 "#PWR0107" H 2050 2600 50  0001 C CNN
+F 1 "GND" H 2055 2677 50  0000 C CNN
+F 2 "" H 2050 2850 50  0001 C CNN
+F 3 "" H 2050 2850 50  0001 C CNN
+	1    2050 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 2450 2050 2450
+Wire Wire Line
+	2050 2450 2050 2750
+Wire Wire Line
+	5950 2800 5950 2350
+Wire Wire Line
+	5950 2350 1900 2350
+Wire Wire Line
+	5850 2800 5950 2800
+$Comp
+L Device:C_Small C1
+U 1 1 5D6F19C5
+P 2200 2550
+F 0 "C1" H 2292 2596 50  0000 L CNN
+F 1 "1000µF 16V" H 2292 2505 50  0000 L CNN
+F 2 "" H 2200 2550 50  0001 C CNN
+F 3 "~" H 2200 2550 50  0001 C CNN
+	1    2200 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 2450 2200 2250
+Connection ~ 2200 2250
+Wire Wire Line
+	2200 2650 2200 2750
+Wire Wire Line
+	2200 2750 2050 2750
+Connection ~ 2050 2750
+Wire Wire Line
+	2050 2750 2050 2850
+$Comp
+L Device:C_Small C3
+U 1 1 5D6F4A35
+P 2800 1600
+F 0 "C3" H 2892 1646 50  0000 L CNN
+F 1 "100µF" H 2600 1550 50  0000 L CNN
+F 2 "" H 2800 1600 50  0001 C CNN
+F 3 "~" H 2800 1600 50  0001 C CNN
+	1    2800 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 1500 2600 1350
+Connection ~ 2600 1350
+Wire Wire Line
+	2600 1350 2800 1350
+Wire Wire Line
+	2600 1700 2600 1800
+Wire Wire Line
+	2600 1800 2800 1800
+Connection ~ 2800 1800
+Wire Wire Line
+	3600 1800 3800 1800
+Wire Wire Line
+	3800 1800 3800 1700
+Connection ~ 3600 1800
+Wire Wire Line
+	3800 1500 3800 1350
+Connection ~ 3800 1350
+Wire Wire Line
+	3800 1350 5250 1350
+$Comp
+L Regulator_Linear:AMS1117-3.3 U2
+U 1 1 5D6E92F9
+P 3200 1350
+F 0 "U2" H 3200 1592 50  0000 C CNN
+F 1 "AMS1117-3.3" H 3200 1501 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 3200 1550 50  0001 C CNN
+F 3 "http://www.advanced-monolithic.com/pdf/ds1117.pdf" H 3300 1100 50  0001 C CNN
+	1    3200 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C5
+U 1 1 5D6FB804
+P 3800 1600
+F 0 "C5" H 3892 1646 50  0000 L CNN
+F 1 "22µF" H 3892 1555 50  0000 L CNN
+F 2 "" H 3800 1600 50  0001 C CNN
+F 3 "~" H 3800 1600 50  0001 C CNN
+	1    3800 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C4
+U 1 1 5D6FB80A
+P 3600 1600
+F 0 "C4" H 3692 1646 50  0000 L CNN
+F 1 "100µF" H 3400 1550 50  0000 L CNN
+F 2 "" H 3600 1600 50  0001 C CNN
+F 3 "~" H 3600 1600 50  0001 C CNN
+	1    3600 1600
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
